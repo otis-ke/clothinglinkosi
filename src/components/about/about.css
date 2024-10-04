@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Merriweather:wght@400&display=swap');
+
+.about-us-container {
+  opacity: 0;
+  transform: translateX(-100px); /* Start from the left */
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  text-align: center; /* Center content */
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 800px; /* Limit the width for better readability */
+}
+
+.about-us-container.animate {
+  opacity: 1;
+  transform: translateX(0); /* Moves to the center */
+}
+
+/* Scoped h1 to only affect AboutUs */
+.about-us-container h1 {
+  font-family: 'Kanit', sans-serif; /* Updated font style */
+  font-weight: 600;
+  font-size: 2rem; /* Smaller font size */
+  margin-bottom: 1rem; /* Adjusted margin */
+  color: #333;
+}
+
+.about-us-container h3 {
+  font-family: 'Kanit', sans-serif; /* Updated font style */
+  font-weight: 600;
+  font-size: 1.5rem; /* Smaller font size */
+  margin-bottom: 1rem; /* Adjusted margin */
+  color: #444;
+}
+
+.about-us-container p {
+  font-family: 'Merriweather', serif;
+  font-size: 1rem; /* Smaller font size */
+  line-height: 1.5; /* Adjusted line height */
+  color: #555;
+  margin: 1rem 0; /* Adjusted margin */
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .about-us-container h1 {
+    font-size: 1.75rem; /* Responsive font size */
+  }
+
+  .about-us-container h3 {
+    font-size: 1.25rem; /* Responsive font size */
+  }
+
+  .about-us-container p {
+    font-size: 0.9rem; /* Responsive font size */
+  }
+}

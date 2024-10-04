@@ -1,0 +1,166 @@
+/* General font styling - smaller sizes */
+.cormorant-garamond-regular {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 12px; /* Smaller font size */
+}
+
+.cormorant-garamond-semibold {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 14px; /* Smaller font size */
+}
+
+.cormorant-garamond-medium {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 12px; /* Smaller font size */
+}
+
+/* Product header image */
+.product-header-image {
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+/* Layout of product items */
+.new-product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Force all elements to align to the start */
+  gap: 3px; /* Minimized the gap between elements */
+  padding: 5px; /* Minimize padding */
+  border: none;
+  margin: 0;
+}
+
+.new-product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensure price aligns to the start */
+}
+
+.new-product-price {
+  font-size: 12px; /* Smaller font for price */
+  margin: 0; /* Remove margin for tighter spacing */
+}
+
+/* Action buttons (Buy Now, Cart, WhatsApp) */
+.new-action-buttons {
+  display: flex;
+  gap: 5px; /* Minimize the space between icons */
+  justify-content: flex-start; /* Force buttons to align to the start */
+  width: 100%;
+}
+
+.new-buy-now-btn {
+  padding: 6px 10px; /* Smaller padding */
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 12px; /* Smaller font size */
+}
+
+.new-buy-now-btn:hover {
+  background-color: #444;
+}
+
+/* Cart and WhatsApp buttons - icons only */
+.new-cart-icon-btn,
+.new-whatsapp-icon-btn {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Slightly smaller icon size */
+  display: flex;
+  align-items: flex-start; /* Ensure icon aligns to the start */
+}
+
+.new-cart-icon-btn svg,
+.new-whatsapp-icon-btn svg {
+  width: 14px; /* Smaller icon size */
+  height: 14px;
+}
+
+/* Full-page modal for product details */
+.full-page-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+}
+
+.full-page-content {
+  margin: 5% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 900px;
+  background-color: white;
+}
+
+.full-page-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.full-page-main-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.full-page-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.full-page-gallery-image {
+  width: 150px;
+  height: auto;
+}
+
+.full-page-actions {
+  margin-top: 20px;
+}
+
+.full-page-buy-now-btn,
+.full-page-whatsapp-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.full-page-buy-now-btn:hover,
+.full-page-whatsapp-btn:hover {
+  background-color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .new-product-item {
+    flex-direction: column;
+  }
+
+  .new-action-buttons {
+    flex-wrap: nowrap; /* Ensure buttons don't wrap */
+    justify-content: flex-start;
+  }
+
+  .new-cart-icon-btn svg,
+  .new-whatsapp-icon-btn svg {
+    width: 12px; /* Smaller icon size on small devices */
+    height: 12px;
+  }
+}

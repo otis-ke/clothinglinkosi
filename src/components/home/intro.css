@@ -1,0 +1,70 @@
+/* Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900&display=swap');
+
+/* Intro Section */
+.intro-section {
+  position: relative;
+  height: 100vh; /* Takes full viewport height for intro section */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  color: white;
+  text-align: center;
+  overflow: hidden; /* Ensure the image doesn't overflow */
+}
+
+/* Background Image Styling */
+.intro-section img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire section */
+  z-index: 1; /* Place the image below the text */
+}
+
+/* Content Styling */
+.intro-section .content {
+  position: relative;
+  z-index: 2; /* Make sure the content is above the image */
+  padding: 2rem;
+}
+
+/* Headings */
+.headings h1 {
+  font-size: 5vw; /* Responsive font size */
+  opacity: 0;
+  transform: translateY(10px); /* Slightly move down */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  font-family: 'Protest Guerrilla', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow */
+}
+
+.headings h4 {
+  font-size: 3vw; /* Responsive font size */
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px); /* Slightly move down */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  font-family: 'Merriweather', serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Reveal Animation for Text */
+.headings h1.reveal, .headings h4.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headings h1 {
+    font-size: 8vw; /* Larger font on smaller screens */
+  }
+
+  .headings h4 {
+    font-size: 5vw; /* Larger font on smaller screens */
+  }
+}

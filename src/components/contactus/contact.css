@@ -1,0 +1,189 @@
+/* Import Google Fonts for Lora */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+/* Ensure Lora font across the entire Contact component */
+.lora-font {
+  font-family: 'Lora', serif !important;
+}
+
+/* Main Button */
+.contact-btn {
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 40px auto;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+  font-family: 'Lora', serif; /* Apply Lora specifically here */
+}
+
+.icon-link {
+  margin-left: 8px;
+}
+
+.contact-btn:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Blur effect on background when popup is open */
+.contact-section.blurred {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+/* Contact Popup */
+.contact-popup {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.contact-popup.open {
+  right: 0;
+}
+
+.contact-popup-content {
+  padding: 30px;
+  font-size: 16px;
+  font-family: 'Lora', serif !important; /* Ensure Lora font is used throughout */
+}
+
+/* Close Button with Animation */
+.close-btn {
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.close-icon {
+  margin-right: 5px;
+}
+
+/* Contact Methods Styling */
+.contact-methods {
+  margin-top: 20px;
+}
+
+.contact-methods p {
+  margin: 15px 0;
+  font-size: 14px;
+  font-family: 'Lora', serif !important; /* Ensure Lora font */
+}
+
+.contact-methods a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.contact-methods a:hover {
+  border-bottom: 1px solid black;
+}
+
+/* Form and Contact Headings */
+.contact-heading {
+  font-family: 'Lora', serif !important;
+  font-weight: bold;
+}
+
+/* Buttons Styled as Text */
+.form-btn, .whatsapp-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Lora', serif !important; /* Ensure Lora font */
+}
+
+.form-btn:hover, .whatsapp-btn:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form Popup */
+.form-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+/* Form Popup Content */
+.form-popup-content {
+  background-color: white;
+  padding: 30px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'Lora', serif !important; /* Ensure Lora font */
+}
+
+/* Rounded Corners for Input Fields */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Lora', serif !important; /* Ensure Lora font */
+}
+
+/* Submit Button */
+button[type="submit"] {
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100%;
+  font-family: 'Lora', serif !important; /* Ensure Lora font */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .contact-popup {
+    width: 100%;
+    right: -100%;
+  }
+
+  .contact-popup.open {
+    right: 0;
+  }
+
+  .form-popup-content {
+    padding: 20px;
+    width: 90%;
+  }
+}

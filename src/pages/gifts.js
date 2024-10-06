@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { db } from './womenfire';
+import { db } from './womenfire'; // Ensure this file points to the correct Firestore setup for gifts
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import './women.css';
+import './women.css'; // Assuming you're using a separate CSS for gifts or can share styles
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../components/firebase/firebase';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const Women = () => {
+const Gifts = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
@@ -24,7 +24,7 @@ const Women = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productCollectionRef = collection(db, 'women');
+        const productCollectionRef = collection(db, 'gifts');
         const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
         const productSnapshot = await getDocs(productQuery);
         const productsList = productSnapshot.docs.map(doc => ({
@@ -80,7 +80,7 @@ const Women = () => {
 
   // Share product via WhatsApp
   const handleWhatsApp = (product) => {
-    const productLink = `${window.location.origin}/women?id=${product.id}`;
+    const productLink = `${window.location.origin}/gifts?id=${product.id}`;
     const whatsappMessage = `I am interested in ${product.name}, which costs Ksh ${product.price}. Check it out here: ${productLink}`;
     window.open(`https://wa.me/254745826811?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
@@ -88,13 +88,13 @@ const Women = () => {
   // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`/women?id=${product.id}`);
+    navigate(`/gifts?id=${product.id}`);
   };
 
   // Close modal
   const closeModal = () => {
     setModalProduct(null);
-    navigate('/women');
+    navigate('/gifts');
   };
 
   // Intersection Observer for product reveal animations
@@ -124,7 +124,7 @@ const Women = () => {
 
   return (
     <section id="shop-section" className="new-shop-section">
-      <h2 className="cormorant-garamond-regular">Women</h2>
+      <h2 className="cormorant-garamond-regular">Gifts</h2>
       <div className="new-product-grid">
         {products.map((product, index) => (
           <div
@@ -221,4 +221,4 @@ const Women = () => {
   );
 };
 
-export default Women;
+export default Gifts;

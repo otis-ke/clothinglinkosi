@@ -149,26 +149,48 @@
   font-family: 'Lora', serif !important; /* Ensure Lora font */
 }
 
-/* Rounded Corners for Input Fields */
+/* Form Input Fields */
 input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  width: calc(100% - 40px); /* Ensure inputs don't touch container edges */
+  padding: 15px;
+  margin: 15px 0;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 0; /* Keep corners untouched (no border-radius) */
   font-family: 'Lora', serif !important; /* Ensure Lora font */
+  font-size: 16px;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Soft inner shadow for depth */
 }
 
-/* Submit Button */
+/* Form Textarea */
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Improved Spacing for Form Submit Button */
 button[type="submit"] {
-  padding: 12px;
+  padding: 15px;
+  margin-top: 20px;
   background-color: #333;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 8px;
   width: 100%;
-  font-family: 'Lora', serif !important; /* Ensure Lora font */
+  font-family: 'Lora', serif !important;
+  font-size: 18px;
+}
+
+/* Focus State for Input Fields */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #555;
+  background-color: #fff;
+}
+
+/* Padding for Form Popup */
+.form-popup-content {
+  padding: 30px;
 }
 
 /* Responsive Styling */
@@ -185,5 +207,13 @@ button[type="submit"] {
   .form-popup-content {
     padding: 20px;
     width: 90%;
+  }
+
+  input, textarea {
+    width: calc(100% - 30px); /* Adjust for smaller screens */
+  }
+
+  button[type="submit"] {
+    font-size: 16px; /* Slightly reduce button font size for smaller screens */
   }
 }

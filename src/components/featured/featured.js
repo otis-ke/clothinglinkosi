@@ -106,7 +106,7 @@ const FeaturedCollection = () => {
           ref={(el) => (collectionRefs.current[3] = el)}
           data-direction="left" // Left to right animation
         >
-          <h3>Fits</h3>
+          <h3>Gifts</h3>
           <div className="product-gallery">
             <div className="product-item">
               <img src={newInProduct1} alt="New In Product 1" />

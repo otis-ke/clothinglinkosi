@@ -1,139 +1,82 @@
 /* Main styling for the shop section */
 .new-shop-section {
-    padding: 20px;
-    text-align: center;
-    background-color: #fff;
-    font-family: 'Helvetica', sans-serif;
-  }
-  
-  .new-shop-section h2 {
-    font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: 40px;
-  }
-  
-  /* Product Grid */
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.new-shop-section h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2.5rem; /* Increased font size */
+  margin-bottom: 40px;
+}
+
+/* Product Grid */
+.new-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Product Item Styling */
+.new-product-item {
+  text-align: left;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  padding: 10px;
+}
+
+.new-product-item[data-direction="left"] {
+  transform: translateX(-100px);
+}
+
+.new-product-item.reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.new-product-item img {
+  width: 100%;
+  height: auto;
+  border: none;
+}
+
+.new-product-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 10px 0;
+  text-align: left;
+}
+
+/* Responsive design for smaller devices */
+@media (max-width: 1024px) {
   .new-product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  /* Product Item Styling */
-  .new-product-item {
-    text-align: left;
-    opacity: 0;
-    transform: translateX(100px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    padding: 10px;
-  }
-  
-  .new-product-item[data-direction="left"] {
-    transform: translateX(-100px);
-  }
-  
-  .new-product-item.reveal {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  .new-product-item img {
-    width: 100%;
-    height: auto;
-    border: none;
-  }
-  
-  .new-product-item h4 {
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 10px 0;
-    text-align: left;
-  }
-  
-  /* Container for price and buttons */
-  .new-product-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
-  }
-  
-  /* Styling for Price */
-  .new-product-price {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #333;
-    text-align: left;
-    margin-right: 10px;
-  }
-  
-  /* Action buttons */
-  .new-product-item .new-action-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between the buttons */
-  }
-  
-  /* Button Styling */
-  .new-product-item .new-action-buttons .new-buy-now-btn {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #000;
-    padding: 8px 12px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .new-product-item .new-action-buttons .new-buy-now-btn:hover {
-    color: #555;
-  }
-  
-  .new-product-item .new-action-buttons .new-cart-icon-btn {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    color: #000;
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
-  
-  .new-product-item .new-action-buttons .new-cart-icon-btn:hover {
-    color: #555;
-  }
-  
-  /* Responsive design for smaller devices */
-  @media (max-width: 1024px) {
-    .new-product-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .new-product-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .new-product-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .new-product-info {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-  
-  /* Ensure no overflow on smaller devices */
-  .new-shop-section {
-    overflow-x: hidden;
-    max-width: 100%;
-  }
-  
+}
+
+@media (max-width: 768px) {
   .new-product-grid {
-    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
+}
+
+@media (max-width: 480px) {
+  .new-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ensure no overflow on smaller devices */
+.new-shop-section {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.new-product-grid {
+  max-width: 100%;
+}

@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import './payment.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaCreditCard, FaMobileAlt } from 'react-icons/fa';
+import { getDatabase, ref, push } from "firebase/database";
+import './payment.css';
 
 const Payment = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const cart = location.state?.cart || JSON.parse(localStorage.getItem('cart'));
 
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -15,7 +17,9 @@ const Payment = () => {
     country: '',
     phone: '',
     description: '',
-    mpesaPhone: ''
+    mpesaPhone: '',
+    mpesaTransactionCode: '',
+    mpesaTransactionAmount: '',
   });
 
   const paypalRef = useRef();
@@ -26,6 +30,20 @@ const Payment = () => {
 
   const calculateTotal = () => {
     return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
+
+  const saveOrderToDatabase = async (orderDetails) => {
+    const db = getDatabase();
+    try {
+      await push(ref(db, 'orders'), orderDetails);
+      alert('Order submitted successfully!');
+      localStorage.setItem('order', JSON.stringify(orderDetails));  // Store order locally for viewing
+      localStorage.removeItem('cart');  // Clear cart after order submission
+      navigate('/orders');
+    } catch (error) {
+      console.error("Error saving order to database: ", error);
+      alert('An error occurred while submitting your order. Please try again.');
+    }
   };
 
   const handlePayment = () => {
@@ -40,9 +58,30 @@ const Payment = () => {
     }
 
     if (paymentMethod === 'Mpesa') {
-      // Implement Mpesa payment logic here using the Daraja API
-      alert(`Sending STK push to phone number: ${formData.mpesaPhone}`);
+      alert(`Please complete the payment using the following steps:\n
+        1. Select M-PESA\n
+        2. Send Money\n
+        3. Enter Phone No. 0702066492\n
+        4. Enter Amount: Ksh ${calculateTotal()}\n
+        5. Enter M-PESA PIN\n
+        6. Confirm the transaction\n\n
+        After receiving the confirmation message, copy the message with the transaction code and submit it in the form below.
+      `);
     }
+  };
+
+  const handleMpesaSubmit = () => {
+    if (!formData.mpesaTransactionCode || !formData.mpesaTransactionAmount) {
+      alert('Please enter the transaction code and amount.');
+      return;
+    }
+    const orderDetails = {
+      ...formData,
+      cart,
+      paymentMethod: 'Mpesa',
+      totalAmount: calculateTotal(),
+    };
+    saveOrderToDatabase(orderDetails);
   };
 
   useEffect(() => {
@@ -60,7 +99,13 @@ const Payment = () => {
         onApprove: (data, actions) => {
           return actions.order.capture().then(details => {
             alert('Transaction completed by ' + details.payer.name.given_name);
-            // Handle successful payment
+            const orderDetails = {
+              ...formData,
+              cart,
+              paymentMethod: 'Card',
+              totalAmount: calculateTotal(),
+            };
+            saveOrderToDatabase(orderDetails);
           });
         },
         onError: (err) => {
@@ -68,7 +113,7 @@ const Payment = () => {
         }
       }).render(paypalRef.current);
     }
-  }, [paymentMethod, calculateTotal]);
+  }, [paymentMethod, cart, formData, navigate]);
 
   return (
     <div className="payment-container">
@@ -127,11 +172,17 @@ const Payment = () => {
             <label>Phone Number:
               <input type="tel" name="mpesaPhone" value={formData.mpesaPhone} onChange={handleInputChange} required />
             </label>
+            <button onClick={handlePayment} className="pay-btn">Proceed with Mpesa Payment</button>
+            <label>Transaction Code:
+              <input type="text" name="mpesaTransactionCode" value={formData.mpesaTransactionCode} onChange={handleInputChange} required />
+            </label>
+            <label>Amount Paid:
+              <input type="text" name="mpesaTransactionAmount" value={formData.mpesaTransactionAmount} onChange={handleInputChange} required />
+            </label>
+            <button onClick={handleMpesaSubmit} className="pay-btn">Submit Mpesa Details</button>
           </div>
         )}
       </div>
-
-      <button onClick={handlePayment} className="pay-btn">Confirm Payment</button>
     </div>
   );
 };

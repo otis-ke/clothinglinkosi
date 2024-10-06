@@ -1,0 +1,155 @@
+/* Import Google Fonts for Lora */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+.lora-font {
+  font-family: 'Lora', serif !important;
+}
+
+/* Full Page Layout for Get In Touch Page */
+.get-in-touch-page {
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+.get-in-touch-info {
+  margin-bottom: 40px;
+}
+
+.get-in-touch-heading {
+  font-family: 'Lora', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.contact-methods {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.contact-methods p {
+  margin: 12px 0;
+  color: #555;
+}
+
+.contact-methods a {
+  text-decoration: none;
+  color: #1e90ff;
+  font-weight: bold;
+}
+
+.contact-methods a:hover {
+  text-decoration: underline;
+}
+
+/* Form Section */
+.form-section {
+  background-color: white;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Lora', serif;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #1e90ff;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #104e8b;
+}
+
+.icon-link {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+/* Success/Error Messages */
+.success-message {
+  color: green;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .get-in-touch-page {
+    padding: 30px;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .get-in-touch-heading {
+    font-size: 30px;
+  }
+
+  .contact-form label,
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    font-size: 16px;
+  }
+}

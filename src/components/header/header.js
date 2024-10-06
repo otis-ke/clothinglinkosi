@@ -1,9 +1,10 @@
+// Header.js
 import React, { useState, useEffect } from 'react';
 import './header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, provider, signInWithPopup, signOut } from '../firebase/firebase';
-import { FaShoppingCart, FaTimes } from 'react-icons/fa'; // For Cart and X icons
+import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa'; // Added Orders Icon (FaBoxOpen)
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,6 +68,9 @@ const Header = () => {
           <Link to="/checkout" className="cart-icon">
             <FaShoppingCart />
           </Link>
+          <Link to="/orders" className="order-icon"> {/* Added Orders link */}
+            <FaBoxOpen />
+          </Link>
           {!user && <span className="login-link" onClick={handleSignIn}>Sign In</span>}
         </nav>
 
@@ -104,9 +108,12 @@ const Header = () => {
         <Link to="/kids" className="nav-link" onClick={closeMenu}>Kids</Link>
         <Link to="/gifts" className="nav-link" onClick={closeMenu}>Gifts</Link>
         <Link to="/decor" className="nav-link" onClick={closeMenu}>Decor</Link>
-        <Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link>
+        <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact</Link>
         <Link to="/checkout" className="nav-link" onClick={closeMenu}>
           <FaShoppingCart /> Cart
+        </Link>
+        <Link to="/orders" className="nav-link" onClick={closeMenu}>
+          <FaBoxOpen /> Orders
         </Link>
         {user ? (
           <div className="user-section">

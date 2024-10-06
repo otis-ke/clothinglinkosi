@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/clothinglinkosi/static/css/main.8ce41ae3.css",
-    "main.js": "/clothinglinkosi/static/js/main.690661ea.js",
+    "main.css": "/clothinglinkosi/static/css/main.dde05d2c.css",
+    "main.js": "/clothinglinkosi/static/js/main.5da5a01b.js",
     "static/js/453.ed3810f9.chunk.js": "/clothinglinkosi/static/js/453.ed3810f9.chunk.js",
     "static/media/new3.jpg": "/clothinglinkosi/static/media/new3.808fda89333a380a8861.jpg",
     "static/media/show.jpg": "/clothinglinkosi/static/media/show.6cda809f1b211dec10b5.jpg",
@@ -14,8 +14,6 @@
     "static/media/womenz.jpg": "/clothinglinkosi/static/media/womenz.e6b0df5d3b06f6c55e52.jpg",
     "static/media/pluto.jpg": "/clothinglinkosi/static/media/pluto.92f6b430e43fc733618b.jpg",
     "static/media/new1.jpg": "/clothinglinkosi/static/media/new1.8b7a98bb597571ec8a9f.jpg",
-    "static/media/cloth5.jpg": "/clothinglinkosi/static/media/cloth5.65b2b2be58e8d6754c4a.jpg",
-    "static/media/cloth4.jpg": "/clothinglinkosi/static/media/cloth4.a94191b380e9d095137b.jpg",
     "static/media/shallow.jpg": "/clothinglinkosi/static/media/shallow.87fed5bb68cf9b8916c5.jpg",
     "static/media/cloth2.jpg": "/clothinglinkosi/static/media/cloth2.cb2559d84ca1141f85ad.jpg",
     "static/media/cloth6.jpg": "/clothinglinkosi/static/media/cloth6.c2a56722aa67a650e6b1.jpg",
@@ -25,12 +23,12 @@
     "static/media/new6.jpg": "/clothinglinkosi/static/media/new6.f4b99c575704569dde1a.jpg",
     "static/media/child 1.jpg": "/clothinglinkosi/static/media/child 1.240348705b06e9bb2a2f.jpg",
     "index.html": "/clothinglinkosi/index.html",
-    "main.8ce41ae3.css.map": "/clothinglinkosi/static/css/main.8ce41ae3.css.map",
-    "main.690661ea.js.map": "/clothinglinkosi/static/js/main.690661ea.js.map",
+    "main.dde05d2c.css.map": "/clothinglinkosi/static/css/main.dde05d2c.css.map",
+    "main.5da5a01b.js.map": "/clothinglinkosi/static/js/main.5da5a01b.js.map",
     "453.ed3810f9.chunk.js.map": "/clothinglinkosi/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8ce41ae3.css",
-    "static/js/main.690661ea.js"
+    "static/css/main.dde05d2c.css",
+    "static/js/main.5da5a01b.js"
   ]
 }

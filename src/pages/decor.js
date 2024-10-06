@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { db } from './womenfire'; // Make sure this file points to the Firestore setup for decor
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -20,6 +20,18 @@ const Decor = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Handle URL-based product modals
+  const handleUrlProduct = useCallback((productsList) => {
+    const urlParams = new URLSearchParams(location.search);
+    const productId = urlParams.get('id');
+    if (productId) {
+      const product = productsList.find((p) => p.id === productId);
+      if (product) {
+        setModalProduct(product);
+      }
+    }
+  }, [location.search]);
+
   // Fetch products from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,19 +52,7 @@ const Decor = () => {
     };
 
     fetchProducts();
-  }, [location.search]);
-
-  // Handle URL-based product modals
-  const handleUrlProduct = (productsList) => {
-    const urlParams = new URLSearchParams(location.search);
-    const productId = urlParams.get('id');
-    if (productId) {
-      const product = productsList.find((p) => p.id === productId);
-      if (product) {
-        setModalProduct(product);
-      }
-    }
-  };
+  }, [location.search, handleUrlProduct]);
 
   // Add product to the cart
   const handleAddToCart = (product) => {
@@ -135,7 +135,7 @@ const Decor = () => {
           >
             <img
               src={product.header_image}
-              alt={product.name}
+              alt={product.name} // Updated alt attribute
               onClick={() => openProductPage(product)}
               className="product-header-image"
             />
@@ -176,7 +176,7 @@ const Decor = () => {
             <div className="full-page-header">
               <img
                 src={modalProduct.header_image}
-                alt={modalProduct.name}
+                alt={modalProduct.name} // Updated alt attribute
                 className="full-page-main-image"
               />
               <h2 className="cormorant-garamond-semibold">{modalProduct.name}</h2>
@@ -187,7 +187,7 @@ const Decor = () => {
                 <img
                   key={i}
                   src={image}
-                  alt={`${modalProduct.name} image ${i}`}
+                  alt={modalProduct.name} // Updated alt attribute
                   className="full-page-gallery-image"
                 />
               ))}

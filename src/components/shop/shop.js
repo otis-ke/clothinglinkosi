@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import './shop.css'; // Import the custom CSS
-import { FiShoppingCart } from 'react-icons/fi'; // Import cart icon from react-icons
-
 import Product1 from '../images/pluto.jpg';
 import BagProduct1 from '../images/cloth1.jpg';
 import ShoeProduct1 from '../images/cloth2.jpg';

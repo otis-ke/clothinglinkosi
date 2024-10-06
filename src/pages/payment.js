@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaCreditCard, FaMobileAlt } from 'react-icons/fa';
 import { getDatabase, ref, push } from "firebase/database";
@@ -28,11 +28,11 @@ const Payment = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const calculateTotal = () => {
+  const calculateTotal = useCallback(() => {
     return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  };
+  }, [cart]);
 
-  const saveOrderToDatabase = async (orderDetails) => {
+  const saveOrderToDatabase = useCallback(async (orderDetails) => {
     const db = getDatabase();
     try {
       await push(ref(db, 'orders'), orderDetails);
@@ -44,7 +44,7 @@ const Payment = () => {
       console.error("Error saving order to database: ", error);
       alert('An error occurred while submitting your order. Please try again.');
     }
-  };
+  }, [navigate]);
 
   const handlePayment = () => {
     if (!formData.name || !formData.address || !formData.county || !formData.country || !formData.phone) {
@@ -113,7 +113,7 @@ const Payment = () => {
         }
       }).render(paypalRef.current);
     }
-  }, [paymentMethod, cart, formData, navigate]);
+  }, [paymentMethod, cart, formData, navigate, calculateTotal, saveOrderToDatabase]);
 
   return (
     <div className="payment-container">

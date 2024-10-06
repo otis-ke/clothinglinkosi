@@ -15,7 +15,9 @@ const FeaturedCollection = () => {
   const collectionRefs = useRef([]);
 
   useEffect(() => {
-    const observers = collectionRefs.current.map((collection, index) => {
+    const currentRefs = collectionRefs.current;
+
+    const observers = currentRefs.map((collection, index) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -38,8 +40,8 @@ const FeaturedCollection = () => {
     return () => {
       // Cleanup observers
       observers.forEach((observer, index) => {
-        if (collectionRefs.current[index]) {
-          observer.unobserve(collectionRefs.current[index]);
+        if (currentRefs[index]) {
+          observer.unobserve(currentRefs[index]);
         }
       });
     };
@@ -58,10 +60,10 @@ const FeaturedCollection = () => {
           <h3>Mens Collection</h3>
           <div className="product-gallery">
             <div className="product-item">
-              <img src={mensProduct1} alt="Men's Product 1" />
+              <img src={mensProduct1} alt="Men's Pluto Product" />
             </div>
             <div className="product-item">
-              <img src={mensProduct2} alt="Men's Product 2" />
+              <img src={mensProduct2} alt="Men's Manz Product" />
             </div>
           </div>
         </div>
@@ -109,10 +111,10 @@ const FeaturedCollection = () => {
           <h3>Gifts</h3>
           <div className="product-gallery">
             <div className="product-item">
-              <img src={newInProduct1} alt="New In Product 1" />
+              <img src={newInProduct1} alt="New Show Product" />
             </div>
             <div className="product-item">
-              <img src={newInProduct2} alt="New In Product 2" />
+              <img src={newInProduct2} alt="New Shallow Product" />
             </div>
           </div>
         </div>

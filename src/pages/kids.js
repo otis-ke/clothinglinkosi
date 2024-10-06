@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { db } from './womenfire'; // Ensure this file points to the correct Firestore setup
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -20,6 +20,18 @@ const Kids = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Memoize handleUrlProduct to avoid unnecessary re-renders
+  const handleUrlProduct = useCallback((productsList) => {
+    const urlParams = new URLSearchParams(location.search);
+    const productId = urlParams.get('id');
+    if (productId) {
+      const product = productsList.find((p) => p.id === productId);
+      if (product) {
+        setModalProduct(product);
+      }
+    }
+  }, [location.search]);
+
   // Fetch products from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,19 +52,7 @@ const Kids = () => {
     };
 
     fetchProducts();
-  }, [location.search]);
-
-  // Handle URL-based product modals
-  const handleUrlProduct = (productsList) => {
-    const urlParams = new URLSearchParams(location.search);
-    const productId = urlParams.get('id');
-    if (productId) {
-      const product = productsList.find((p) => p.id === productId);
-      if (product) {
-        setModalProduct(product);
-      }
-    }
-  };
+  }, [handleUrlProduct]);
 
   // Add product to the cart
   const handleAddToCart = (product) => {
@@ -135,7 +135,7 @@ const Kids = () => {
           >
             <img
               src={product.header_image}
-              alt={product.name}
+              alt={`${product.name}`}
               onClick={() => openProductPage(product)}
               className="product-header-image"
             />
@@ -176,7 +176,7 @@ const Kids = () => {
             <div className="full-page-header">
               <img
                 src={modalProduct.header_image}
-                alt={modalProduct.name}
+                alt={`${modalProduct.name}`}
                 className="full-page-main-image"
               />
               <h2 className="cormorant-garamond-semibold">{modalProduct.name}</h2>
@@ -187,7 +187,7 @@ const Kids = () => {
                 <img
                   key={i}
                   src={image}
-                  alt={`${modalProduct.name} image ${i}`}
+                  alt={`${modalProduct.name} ${i}`}
                   className="full-page-gallery-image"
                 />
               ))}

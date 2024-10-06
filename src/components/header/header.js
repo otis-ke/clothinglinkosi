@@ -1,7 +1,7 @@
 // Header.js
 import React, { useState, useEffect } from 'react';
 import './header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, provider, signInWithPopup, signOut } from '../firebase/firebase';
 import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa'; // Added Orders Icon (FaBoxOpen)
@@ -9,7 +9,7 @@ import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa'; // Added Or
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,7 +64,7 @@ const Header = () => {
           <Link to="/kids" className="nav-link">Kids</Link>
           <Link to="/gifts" className="nav-link">Gifts</Link>
           <Link to="/decor" className="nav-link">Decor</Link>
-          <Link to="/contact" className="nav-link">Contact</Link>
+          <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
           <Link to="/checkout" className="cart-icon">
             <FaShoppingCart />
           </Link>
@@ -108,7 +108,7 @@ const Header = () => {
         <Link to="/kids" className="nav-link" onClick={closeMenu}>Kids</Link>
         <Link to="/gifts" className="nav-link" onClick={closeMenu}>Gifts</Link>
         <Link to="/decor" className="nav-link" onClick={closeMenu}>Decor</Link>
-        <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact</Link>
+        <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
         <Link to="/checkout" className="nav-link" onClick={closeMenu}>
           <FaShoppingCart /> Cart
         </Link>

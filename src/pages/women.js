@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { db } from './womenfire';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -20,6 +20,18 @@ const Women = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Memoize handleUrlProduct to ensure it's stable across renders
+  const handleUrlProduct = useCallback((productsList) => {
+    const urlParams = new URLSearchParams(location.search);
+    const productId = urlParams.get('id');
+    if (productId) {
+      const product = productsList.find((p) => p.id === productId);
+      if (product) {
+        setModalProduct(product);
+      }
+    }
+  }, [location.search]);
+
   // Fetch products from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,10 +39,10 @@ const Women = () => {
         const productCollectionRef = collection(db, 'women');
         const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
         const productSnapshot = await getDocs(productQuery);
-        const productsList = productSnapshot.docs.map(doc => ({
+        const productsList = productSnapshot.docs.map((doc) => ({
           id: doc.id,
           quantity: 1, // Add quantity field to each product
-          ...doc.data()
+          ...doc.data(),
         }));
         setProducts(productsList);
         handleUrlProduct(productsList);
@@ -40,19 +52,7 @@ const Women = () => {
     };
 
     fetchProducts();
-  }, [location.search]);
-
-  // Handle URL-based product modals
-  const handleUrlProduct = (productsList) => {
-    const urlParams = new URLSearchParams(location.search);
-    const productId = urlParams.get('id');
-    if (productId) {
-      const product = productsList.find((p) => p.id === productId);
-      if (product) {
-        setModalProduct(product);
-      }
-    }
-  };
+  }, [handleUrlProduct]); // Now handleUrlProduct is in the dependency array
 
   // Add product to the cart
   const handleAddToCart = (product) => {
@@ -187,7 +187,7 @@ const Women = () => {
                 <img
                   key={i}
                   src={image}
-                  alt={`${modalProduct.name} image ${i}`}
+                  alt={modalProduct.name}
                   className="full-page-gallery-image"
                 />
               ))}

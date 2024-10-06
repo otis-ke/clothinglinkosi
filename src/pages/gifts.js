@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { db } from './womenfire'; // Ensure this file points to the correct Firestore setup for gifts
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -20,17 +20,30 @@ const Gifts = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Fetch products from Firestore
+  const handleUrlProduct = useCallback(
+    (productsList) => {
+      const urlParams = new URLSearchParams(location.search);
+      const productId = urlParams.get('id');
+      if (productId) {
+        const product = productsList.find((p) => p.id === productId);
+        if (product) {
+          setModalProduct(product);
+        }
+      }
+    },
+    [location.search]
+  );
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const productCollectionRef = collection(db, 'gifts');
         const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
         const productSnapshot = await getDocs(productQuery);
-        const productsList = productSnapshot.docs.map(doc => ({
+        const productsList = productSnapshot.docs.map((doc) => ({
           id: doc.id,
           quantity: 1, // Add quantity field to each product
-          ...doc.data()
+          ...doc.data(),
         }));
         setProducts(productsList);
         handleUrlProduct(productsList);
@@ -40,21 +53,8 @@ const Gifts = () => {
     };
 
     fetchProducts();
-  }, [location.search]);
+  }, [location.search, handleUrlProduct]);
 
-  // Handle URL-based product modals
-  const handleUrlProduct = (productsList) => {
-    const urlParams = new URLSearchParams(location.search);
-    const productId = urlParams.get('id');
-    if (productId) {
-      const product = productsList.find((p) => p.id === productId);
-      if (product) {
-        setModalProduct(product);
-      }
-    }
-  };
-
-  // Add product to the cart
   const handleAddToCart = (product) => {
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     setCart(updatedCart);
@@ -62,42 +62,35 @@ const Gifts = () => {
     alert(`${product.name} added to cart.`);
   };
 
-  // Add product to cart and navigate to checkout
   const handleBuyNow = (product) => {
     if (!user) {
       alert('Please sign in to proceed with the purchase.');
       return navigate('/signin');
     }
 
-    // Add the product to the cart
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    // Redirect to the checkout page
     navigate('/checkout', { state: { cart: updatedCart } });
   };
 
-  // Share product via WhatsApp
   const handleWhatsApp = (product) => {
     const productLink = `${window.location.origin}/gifts?id=${product.id}`;
     const whatsappMessage = `I am interested in ${product.name}, which costs Ksh ${product.price}. Check it out here: ${productLink}`;
     window.open(`https://wa.me/254745826811?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
 
-  // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
     navigate(`/gifts?id=${product.id}`);
   };
 
-  // Close modal
   const closeModal = () => {
     setModalProduct(null);
     navigate('/gifts');
   };
 
-  // Intersection Observer for product reveal animations
   useEffect(() => {
     const observedRefs = productElementRefs.current;
     const observers = observedRefs.map((product, index) => {
@@ -187,7 +180,7 @@ const Gifts = () => {
                 <img
                   key={i}
                   src={image}
-                  alt={`${modalProduct.name} image ${i}`}
+                  alt={`${modalProduct.name} view ${i}`}
                   className="full-page-gallery-image"
                 />
               ))}

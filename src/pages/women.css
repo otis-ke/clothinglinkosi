@@ -17,6 +17,11 @@
   font-size: 12px; /* Smaller font size */
 }
 
+/* Heading font size */
+h2.cormorant-garamond-regular {
+  font-size: 24px; /* Adjust font size for h2 */
+}
+
 /* Product header image */
 .product-header-image {
   cursor: pointer;
@@ -29,8 +34,8 @@
 .new-product-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align everything to the start */
-  gap: 5px; /* Minimize the spacing between items */
+  align-items: flex-start;
+  gap: 3px; /* Minimized the gap between elements */
   padding: 5px; /* Minimize padding */
   border: none;
   margin: 0;
@@ -44,46 +49,41 @@
 
 .new-product-price {
   font-size: 12px; /* Smaller font for price */
-  margin: 0; /* Remove margin for tight spacing */
+  margin: 0; /* Remove margin for tighter spacing */
 }
 
-/* Action buttons (Buy Now, Cart, WhatsApp) */
+/* Action buttons - No decoration, just text */
 .new-action-buttons {
   display: flex;
-  gap: 5px; /* Minimize the space between icons */
-  justify-content: flex-start; /* Align buttons to the start */
-  width: 100%; /* Ensure they stay on one line even on small screens */
+  gap: 5px;
+  justify-content: flex-start;
+  width: 100%;
 }
 
-.new-buy-now-btn {
-  padding: 8px 12px; /* Smaller padding */
-  background-color: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 12px; /* Smaller font size */
-}
-
-.new-buy-now-btn:hover {
-  background-color: #444;
-}
-
-/* Cart and WhatsApp buttons - icons only */
+.new-buy-now-btn,
 .new-cart-icon-btn,
 .new-whatsapp-icon-btn {
   padding: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 16px; /* Smaller icon size */
-  display: flex;
-  align-items: center;
+  font-size: 12px; /* Smaller font size for button text */
+  text-decoration: none; /* No text decoration */
+  color: inherit; /* Use the default text color */
 }
 
+.new-buy-now-btn:hover,
+.new-cart-icon-btn:hover,
+.new-whatsapp-icon-btn:hover {
+  color: #444; /* Slight color change on hover */
+}
+
+/* Cart and WhatsApp buttons - icons only, no decoration */
 .new-cart-icon-btn svg,
 .new-whatsapp-icon-btn svg {
-  width: 16px; /* Smaller icon size */
-  height: 16px;
+  width: 14px;
+  height: 14px;
+  fill: currentColor; /* Make icons inherit the text color */
 }
 
 /* Full-page modal for product details */
@@ -136,15 +136,17 @@
 .full-page-whatsapp-btn {
   margin: 10px;
   padding: 10px 20px;
-  background-color: #000;
-  color: #fff;
+  background-color: transparent;
   border: none;
+  font-size: 14px;
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
 }
 
 .full-page-buy-now-btn:hover,
 .full-page-whatsapp-btn:hover {
-  background-color: #444;
+  color: #444; /* Slight hover effect */
 }
 
 /* Responsive design */
@@ -154,13 +156,17 @@
   }
 
   .new-action-buttons {
-    flex-wrap: nowrap; /* Ensure buttons don't wrap */
+    flex-wrap: nowrap;
     justify-content: flex-start;
   }
 
   .new-cart-icon-btn svg,
   .new-whatsapp-icon-btn svg {
-    width: 14px; /* Smaller icon size on small devices */
-    height: 14px;
+    width: 12px;
+    height: 12px;
+  }
+
+  h2.cormorant-garamond-regular {
+    font-size: 18px; /* Responsive h2 size */
   }
 }

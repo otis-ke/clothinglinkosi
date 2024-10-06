@@ -12,8 +12,7 @@ import Payment from './pages/payment';
 import Orders from './pages/orders';
 import Gifts from './pages/gifts'; // Ensure correct path
 import Decor from './pages/decor'; // Ensure correct path
-import GetInTouch from './pages/getintouch'; // Correct Get In Touch path
-
+import GetInTouch from './pages/getintouch';
 function App() {
   return (
     <Router>
@@ -31,7 +30,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/gifts" element={<Gifts />} /> {/* Correct Gifts route */}
         <Route path="/decor" element={<Decor />} /> {/* Correct Decor route */}
-        <Route path="/getintouch" element={<GetInTouch />} /> {/* Correct Get In Touch route */}
+        <Route path="GetInTouch/" element={< GetInTouch/>} /> {/* Correct Decor route */}
         {/* Redirect any invalid URL to Home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/header/header'; // Ensure correct path
 import Footer from './components/footer/footer'; // Ensure correct path
 import Men from './pages/men'; // Ensure correct path
@@ -13,13 +13,12 @@ import Orders from './pages/orders';
 import Gifts from './pages/gifts'; // Ensure correct path
 import Decor from './pages/decor'; // Ensure correct path
 import GetInTouch from './pages/getintouch';
+
 function App() {
   return (
     <Router>
-      <Header /> {/* This ensures the Header is visible on all pages */}
-      
+      <Header />
       <Routes>
-        {/* Default route for Home */}
         <Route path="/" element={<Home />} />
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
@@ -28,14 +27,12 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/gifts" element={<Gifts />} /> {/* Correct Gifts route */}
-        <Route path="/decor" element={<Decor />} /> {/* Correct Decor route */}
-        <Route path="GetInTouch/" element={< GetInTouch/>} /> {/* Correct Decor route */}
-        {/* Redirect any invalid URL to Home */}
+        <Route path="/gifts" element={<Gifts />} />
+        <Route path="/decor" element={<Decor />} />
+        <Route path="/GetInTouch" element={<GetInTouch />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-
-      <Footer /> {/* This ensures the Footer is visible on all pages */}
+      <Footer />
     </Router>
   );
 }

@@ -80,7 +80,7 @@ const Decor = () => {
 
   // Share product via WhatsApp
   const handleWhatsApp = (product) => {
-    const productLink = `${window.location.origin}/decor?id=${product.id}`;
+    const productLink = `${window.location.origin}/#/decor?id=${product.id}`; // Updated here
     const whatsappMessage = `I am interested in ${product.name}, which costs Ksh ${product.price}. Check it out here: ${productLink}`;
     window.open(`https://wa.me/254745826811?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
@@ -88,7 +88,7 @@ const Decor = () => {
   // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`/decor?id=${product.id}`);
+    navigate(`#/decor?id=${product.id}`); // Updated here
   };
 
   // Close modal

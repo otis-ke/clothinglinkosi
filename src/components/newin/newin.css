@@ -1,161 +1,209 @@
-/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+/* Global font styling using Bodoni Moda SC */
+.bodoni-moda-sc-regular {
+  font-family: "Bodoni Moda SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Prevent horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* Full viewport height and width */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent scrolling beyond sections */
+section {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Existing styles */
 .lora-regular {
-    font-family: 'Lora', serif;
+  font-family: 'Lora', serif;
+}
+
+/* Slider Section Styling */
+.new-in-section {
+  text-align: center;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-in-out;
+}
+
+.new-in-section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Heading Styling */
+.new-in-heading {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #000;
+  font-family: "Bodoni Moda SC", serif; /* Applied Bodoni Moda SC font */
+  text-transform: uppercase;
+}
+
+/* Slider container */
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.slider-item {
+  flex: 0 0 33%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.slider-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* Slider Overlay and Button */
+.slider-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.slider-item:hover .slider-overlay,
+.slider-overlay.visible {
+  opacity: 1;
+}
+
+.shop-now-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 1rem;
+  font-family: "Bodoni Moda SC", serif; /* Applied Bodoni Moda SC font */
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Pagination + Arrows Container */
+.pagination-arrows-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+  position: relative;
+}
+
+/* Arrows Styling */
+.slider-arrow {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 30px;
+}
+
+.slider-arrow-left,
+.slider-arrow-right {
+  padding: 0 10px;
+}
+
+/* Pagination Dots */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .slider-item {
+    flex: 0 0 50%;
   }
-  
-  /* Slider Section Styling */
-  .new-in-section {
-    text-align: center;
-    padding: 40px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
-  }
-  
-  .new-in-section.reveal {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Heading Styling */
+
   .new-in-heading {
     font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #000;
-    font-family: 'Lora', serif;
-    text-transform: uppercase;
   }
-  
-  /* Slider container */
-  .slider-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-  }
-  
-  .slider-item {
-    flex: 0 0 33%;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .slider-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.3s ease;
-  }
-  
-  /* Slider Overlay and Button */
-  .slider-overlay {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
-  }
-  
-  .slider-item:hover .slider-overlay,
-  .slider-overlay.visible {
-    opacity: 1;
-  }
-  
-  .shop-now-btn {
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid #000;
-    color: #000;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  
-  .shop-now-btn:hover {
-    background: #000;
-    color: #fff;
-  }
-  
-  /* Pagination + Arrows Container */
+
   .pagination-arrows-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
     gap: 10px;
-    position: relative;
   }
-  
-  /* Arrows Styling */
+
   .slider-arrow {
-    background: none; /* No background */
-    border: none;
-    color: #000;
-    cursor: pointer;
-    z-index: 1;
-    font-size: 30px;
+    font-size: 25px;
   }
-  
-  .slider-arrow-left,
-  .slider-arrow-right {
-    padding: 0 10px;
+}
+
+/* Large Devices (Above 768px) */
+@media (min-width: 769px) {
+  .slider-item {
+    margin: 20px;
   }
-  
-  /* Pagination Dots */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+}
+
+/* Mobile Devices (Max 480px) */
+@media (max-width: 480px) {
+  .new-in-section {
+    padding: 0;
+    margin: 0;
   }
-  
-  .dot {
-    height: 12px;
-    width: 12px;
-    background-color: #ddd;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
+
+  .slider {
+    width: 100vw;
   }
-  
-  .active {
-    background-color: #000;
+
+  .slider-item {
+    flex: 0 0 100%;
+    margin: 0;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .slider-item {
-      flex: 0 0 100%;
-    }
-  
-    .new-in-heading {
-      font-size: 1.5rem;
-    }
-  
-    .pagination-arrows-container {
-      gap: 10px; /* Adjust gap for smaller screens */
-    }
-  
-    .slider-arrow {
-      font-size: 25px;
-    }
+
+  .slider-item img {
+    border-radius: 0;
+    width: 100vw;
+    height: auto;
   }
-  
+}

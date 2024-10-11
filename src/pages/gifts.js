@@ -76,14 +76,14 @@ const Gifts = () => {
   };
 
   const handleWhatsApp = (product) => {
-    const productLink = `${window.location.origin}/gifts?id=${product.id}`;
+    const productLink = `${window.location.origin}/#/gifts?id=${product.id}`; // Updated here
     const whatsappMessage = `I am interested in ${product.name}, which costs Ksh ${product.price}. Check it out here: ${productLink}`;
     window.open(`https://wa.me/254745826811?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
 
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`/gifts?id=${product.id}`);
+    navigate(`#/gifts?id=${product.id}`); // Updated here
   };
 
   const closeModal = () => {

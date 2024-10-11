@@ -1,5 +1,10 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Merriweather:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+* {
+  font-family: 'Bodoni Moda SC', serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Adjust weight as needed */
+}
 
 .shop-section {
   padding: 20px;
@@ -7,8 +12,8 @@
 }
 
 .shop-section h2 {
-  font-family: 'Merriweather', serif;
-  font-weight: 400;
+  font-family: 'Bodoni Moda SC', serif; /* Ensure the font is applied */
+  font-weight: 400; /* Use the same weight */
   opacity: 0;
   transform: translateY(50px);
   animation: fadeInUp 1s forwards;
@@ -41,7 +46,7 @@
 }
 
 .collection-section h3 {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Bodoni Moda SC', serif; /* Ensure the font is applied */
   font-weight: 600;
   margin-bottom: 20px;
   text-align: center;

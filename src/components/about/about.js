@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './about.css'; // Importing the CSS file
+import './about.css'; // Importing the updated CSS file
 
 const AboutUs = () => {
   const [inView, setInView] = useState(false);
@@ -26,7 +26,6 @@ const AboutUs = () => {
     };
   }, []);
 
-  // Helper function to split text into individual letters
   const splitTextIntoLetters = (text) => {
     return text.split('').map((char, index) => (
       <span

@@ -1,38 +1,47 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { db } from '../../pages/womenfire'; // Ensure this path points to your Firestore setup
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import './newin.css';
 
-// Import your images
-import newInProduct1 from '../images/new1.jpg';
-import newInProduct2 from '../images/new2.jpg';
-import newInProduct3 from '../images/new3.jpg'; // Add more images as needed
-import newInProduct4 from '../images/new4.jpg';
-import newInProduct5 from '../images/new5.jpg';
-import newInProduct6 from '../images/new6.jpg';
-import newInProduct7 from '../images/new7.jpg';
 const NewInSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [blogPosts, setBlogPosts] = useState([]);
   const sliderRef = useRef(null);
 
-  const images = [newInProduct1, newInProduct2, newInProduct3, newInProduct4, newInProduct5, newInProduct6, newInProduct7];
+  // Fetch blog posts from Firestore
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const blogCollectionRef = collection(db, 'linkosiblog');
+        const blogQuery = query(blogCollectionRef, orderBy('publish_date', 'desc')); // Sort by publish date
+        const blogSnapshot = await getDocs(blogQuery);
+        const postsList = blogSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data() // Spread the data fields from the document
+        }));
+        setBlogPosts(postsList);
+      } catch (error) {
+        console.error('Error fetching blog posts: ', error);
+      }
+    };
 
-  // Move left (previous)
+    fetchBlogPosts();
+  }, []);
+
   const moveLeft = () => {
-    setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : images.length - 1);
+    setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : blogPosts.length - 1);
   };
 
-  // Move right (next)
   const moveRight = () => {
-    setCurrentIndex(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
+    setCurrentIndex(currentIndex < blogPosts.length - 1 ? currentIndex + 1 : 0);
   };
 
-  // Slide logic
   useEffect(() => {
     const slider = sliderRef.current;
     const totalWidth = slider?.children[0]?.clientWidth * currentIndex;
     if (slider) slider.style.transform = `translateX(-${totalWidth}px)`;
   }, [currentIndex]);
 
-  // Reveal animation on scroll
   useEffect(() => {
     const section = document.querySelector('.new-in-section');
     const observer = new IntersectionObserver(
@@ -48,42 +57,47 @@ const NewInSlider = () => {
     }
   }, []);
 
-  // Auto-slide after 4 seconds
   useEffect(() => {
     const autoSlide = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
-    }, 4000); // Adjust the interval to 4 seconds (4000 milliseconds)
+      setCurrentIndex((prevIndex) =>
+        prevIndex < blogPosts.length - 1 ? prevIndex + 1 : 0
+      );
+    }, 4000); // Adjust the interval to 4 seconds
 
-    // Clear the interval when component is unmounted
     return () => clearInterval(autoSlide);
-  }, [images.length]);
+  }, [blogPosts.length]);
 
   return (
-    <section className="new-in-section lora-regular">
-      <h2 className="new-in-heading">New In</h2>
-      <div className="slider-container">
-        <div ref={sliderRef} className="slider">
-          {images.map((img, index) => (
-            <div key={index} className="slider-item">
-              <img src={img} alt={`New In Product ${index + 1}`} />
-              <div className={`slider-overlay ${currentIndex === index ? 'visible' : ''}`}>
-                <button className="shop-now-btn">Explore Collection</button>
-              </div>
+    <section className="new-in-section bodoni-moda-sc-regular">
+      <br></br>
+      <h2 className="new-in-heading bodoni-moda-sc-bold">
+        EXPLORE The World Of LINKOSI CLOTHING
+      </h2>
+      <div className="slider" ref={sliderRef}>
+        {blogPosts.map((post, index) => (
+          <div key={index} className="slider-item">
+            <img
+              src={post.header_image} // Dynamic header image from Firestore
+              alt={`New In Post ${post.name}`} // Dynamic name from Firestore
+            />
+            <div
+              className={`slider-overlay ${currentIndex === index ? 'visible' : ''}`}
+            >
+              <button className="shop-now-btn bodoni-moda-sc-medium">
+                Explore Collection
+              </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
-      {/* Pagination and Arrows container below the slider */}
       <div className="pagination-arrows-container">
-        {/* Left Arrow */}
         <div className="slider-arrow slider-arrow-left" onClick={moveLeft}>
           &#10094;
         </div>
 
-        {/* Pagination Dots */}
         <div className="pagination">
-          {images.map((_, index) => (
+          {blogPosts.map((_, index) => (
             <span
               key={index}
               className={`dot ${currentIndex === index ? 'active' : ''}`}
@@ -92,7 +106,6 @@ const NewInSlider = () => {
           ))}
         </div>
 
-        {/* Right Arrow */}
         <div className="slider-arrow slider-arrow-right" onClick={moveRight}>
           &#10095;
         </div>

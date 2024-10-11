@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Merriweather:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900&display=swap');
 
 .about-us-container {
   opacity: 0;
@@ -16,38 +16,30 @@
 }
 
 /* Scoped h1 to only affect AboutUs */
+.about-us-container h1,
+.about-us-container p {
+  font-family: 'Bodoni Moda SC', serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Adjust font weight if needed */
+}
+
 .about-us-container h1 {
-  font-family: 'Kanit', sans-serif; /* Updated font style */
-  font-weight: 600;
-  font-size: 2rem; /* Smaller font size */
-  margin-bottom: 1rem; /* Adjusted margin */
+  font-size: 2rem; /* Font size for the heading */
+  margin-bottom: 1rem;
   color: #333;
 }
 
-.about-us-container h3 {
-  font-family: 'Kanit', sans-serif; /* Updated font style */
-  font-weight: 600;
-  font-size: 1.5rem; /* Smaller font size */
-  margin-bottom: 1rem; /* Adjusted margin */
-  color: #444;
-}
-
 .about-us-container p {
-  font-family: 'Merriweather', serif;
-  font-size: 1rem; /* Smaller font size */
-  line-height: 1.5; /* Adjusted line height */
+  font-size: 1rem;
+  line-height: 1.5;
   color: #555;
-  margin: 1rem 0; /* Adjusted margin */
+  margin: 1rem 0;
   text-align: justify;
 }
 
 @media (max-width: 768px) {
   .about-us-container h1 {
     font-size: 1.75rem; /* Responsive font size */
-  }
-
-  .about-us-container h3 {
-    font-size: 1.25rem; /* Responsive font size */
   }
 
   .about-us-container p {

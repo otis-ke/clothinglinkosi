@@ -52,7 +52,7 @@ const Women = () => {
     };
 
     fetchProducts();
-  }, [handleUrlProduct]); // Now handleUrlProduct is in the dependency array
+  }, [handleUrlProduct]);
 
   // Add product to the cart
   const handleAddToCart = (product) => {
@@ -69,18 +69,16 @@ const Women = () => {
       return navigate('/signin');
     }
 
-    // Add the product to the cart
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    // Redirect to the checkout page
     navigate('/checkout', { state: { cart: updatedCart } });
   };
 
   // Share product via WhatsApp
   const handleWhatsApp = (product) => {
-    const productLink = `${window.location.origin}/women?id=${product.id}`;
+    const productLink = `${window.location.origin}/#/women?id=${product.id}`; // Change here
     const whatsappMessage = `I am interested in ${product.name}, which costs Ksh ${product.price}. Check it out here: ${productLink}`;
     window.open(`https://wa.me/254745826811?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
@@ -88,7 +86,7 @@ const Women = () => {
   // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`/women?id=${product.id}`);
+    navigate(`#/women?id=${product.id}`); // Change here
   };
 
   // Close modal

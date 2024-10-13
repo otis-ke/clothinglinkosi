@@ -1,0 +1,129 @@
+/* Global font styling using Bodoni Moda SC */
+.bodoni-moda-sc-regular {
+    font-family: "Bodoni Moda SC", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+/* General Styling */
+body {
+    overflow-x: hidden;
+}
+  
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+section {
+    min-height: 100vh;
+    overflow: hidden;
+}
+  
+/* Slider Section Styling */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+  
+.slider-item {
+    flex: 0 0 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+  
+.slider-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+  
+/* Slider arrows positioned below the images and centered */
+.slider-arrows {
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.slider-arrow {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 30px;
+    pointer-events: all;
+    margin: 0 10px; /* Space between the arrows */
+}
+  
+/* Post details */
+.post-details {
+    padding: 20px;
+    background-color: #fff;
+}
+  
+.post-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+  
+.post-description {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+  
+/* Blue shadow line and dots */
+.separator {
+    margin-top: 20px;
+    text-align: center;
+}
+  
+.blue-line {
+    height: 2px;
+    background-color: blue;
+    width: 80%;
+    margin: 0 auto;
+}
+  
+.dot-separator {
+    margin: 10px 0;
+}
+  
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+}
+  
+.dot-separator .dot.active {
+    background-color: #000;
+}
+  
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slider-item {
+        flex: 0 0 50%;
+        margin: 0; /* No spacing between images */
+    }
+  
+    .slider-arrow {
+        font-size: 25px;
+    }
+}
+  
+@media (max-width: 480px) {
+    .slider-item {
+        flex: 0 0 100%;
+        margin: 0; /* No spacing between images */
+    }
+}

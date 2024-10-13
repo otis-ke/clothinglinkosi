@@ -1,12 +1,15 @@
+// NewInSlider.js
 import React, { useState, useRef, useEffect } from 'react';
 import { db } from '../../pages/womenfire'; // Ensure this path points to your Firestore setup
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './newin.css';
 
 const NewInSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blogPosts, setBlogPosts] = useState([]);
   const sliderRef = useRef(null);
+  const navigate = useNavigate(); // Initialize navigate function
 
   // Fetch blog posts from Firestore
   useEffect(() => {
@@ -67,9 +70,13 @@ const NewInSlider = () => {
     return () => clearInterval(autoSlide);
   }, [blogPosts.length]);
 
+  const handleExploreClick = (postId) => {
+    navigate(`/PostDetail/${postId}`); // Navigate to PostDetail with post ID
+  };
+
   return (
     <section className="new-in-section bodoni-moda-sc-regular">
-      <br></br>
+      <br />
       <h2 className="new-in-heading bodoni-moda-sc-bold">
         EXPLORE The World Of LINKOSI CLOTHING
       </h2>
@@ -77,13 +84,16 @@ const NewInSlider = () => {
         {blogPosts.map((post, index) => (
           <div key={index} className="slider-item">
             <img
-              src={post.header_image} // Dynamic header image from Firestore
-              alt={`New In Post ${post.name}`} // Dynamic name from Firestore
+              src={post.header_image}
+              alt={`New In Post ${post.name}`}
             />
             <div
               className={`slider-overlay ${currentIndex === index ? 'visible' : ''}`}
             >
-              <button className="shop-now-btn bodoni-moda-sc-medium">
+              <button
+                className="shop-now-btn bodoni-moda-sc-medium"
+                onClick={() => handleExploreClick(post.id)}
+              >
                 Explore Collection
               </button>
             </div>

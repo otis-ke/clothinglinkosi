@@ -96,21 +96,23 @@ section {
   opacity: 1;
 }
 
+/* Updated Button Styling */
 .shop-now-btn {
   padding: 10px 20px;
-  background: transparent;
-  border: 1px solid #000;
-  color: #000;
+  background: rgba(255, 255, 255, 0.7); /* Slightly transparent white background */
+  border: none; /* No border */
+  color: #000; /* Black text color */
   font-size: 1rem;
   font-family: "Bodoni Moda SC", serif; /* Applied Bodoni Moda SC font */
   cursor: pointer;
   text-transform: uppercase;
   transition: background 0.3s ease, color 0.3s ease;
+  opacity: 0.9; /* Slight transparency */
 }
 
 .shop-now-btn:hover {
-  background: #000;
-  color: #fff;
+  background: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+  color: #000; /* Text remains black */
 }
 
 /* Pagination + Arrows Container */

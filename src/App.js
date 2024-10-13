@@ -13,6 +13,7 @@ import Orders from './pages/orders';
 import Gifts from './pages/gifts'; // Ensure correct path
 import Decor from './pages/decor'; // Ensure correct path
 import GetInTouch from './pages/getintouch';
+import PostDetail from './pages/blog';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<PostDetail />} />
+        <Route path="/postDetail/:id" element={<PostDetail />} />
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
@@ -29,7 +32,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/gifts" element={<Gifts />} />
         <Route path="/decor" element={<Decor />} />
-        <Route path="/GetInTouch" element={<GetInTouch />} />
+        <Route path="/getintouch" element={<GetInTouch />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

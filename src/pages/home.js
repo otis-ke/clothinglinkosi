@@ -2,7 +2,6 @@
 
 import React from 'react';
 import IntroSection from '../components/home/intro';
-import FeaturedCollection from '../components/featured/featured';
 import NewInSlider from '../components/newin/newin';
 import Shop from '../components/shop/shop';
 import AboutUs from '../components/about/about';
@@ -15,7 +14,6 @@ const Home = () => {
      
       <IntroSection />
       <NewInSlider />
-      <FeaturedCollection />
       <Shop />
       <AboutUs />
       <Contact />

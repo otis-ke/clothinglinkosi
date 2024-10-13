@@ -44,18 +44,23 @@ const AboutUs = () => {
       <p>
         {splitTextIntoLetters(
           `Founded in the vibrant city of Nairobi, Kenya, in 2019, Linkosiclothing has swiftly risen 
-           to become one of the leading glamorous brands in the fashion industry. The designs are a captivating 
-           blend of modern trends and timeless elegance, catering to the discerning individual who seeks to 
-           make a statement. Linkosiclothing's commitment to quality is evident in every piece, meticulously 
-           crafted with premium fabrics and impeccable attention to detail.`
+          to become one of the leading glamorous brands in the fashion industry. The designs are a captivating 
+          blend of modern trends and timeless elegance, catering to the discerning individual who seeks to 
+          make a statement.`
         )}
       </p>
       <p>
         {splitTextIntoLetters(
-          `From stunning dresses to chic separates, their collection empowers women to embrace 
-           their inner confidence and radiate style. Linkosiclothing's dedication to empowering women extends 
-           beyond fashion, as they actively support local artisans and promote sustainable practices. With a global 
-           reach and a loyal following, Linkosiclothing continues to redefine elegance and inspire women around the world.`
+          `Linkosiclothing's commitment to quality is evident in every piece, meticulously 
+          crafted with premium fabrics and impeccable attention to detail. From stunning dresses to chic separates, 
+          their collection empowers women to embrace their inner confidence and radiate style.`
+        )}
+      </p>
+      <p>
+        {splitTextIntoLetters(
+          `Linkosiclothing's dedication to empowering women extends 
+          beyond fashion, as they actively support local artisans and promote sustainable practices. With a global 
+          reach and a loyal following, Linkosiclothing continues to redefine elegance and inspire women around the world.`
         )}
       </p>
     </div>

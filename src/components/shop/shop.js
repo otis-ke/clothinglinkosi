@@ -1,24 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { db } from '../../pages/womenfire'; // Ensure this is your Firestore setup file
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import './shop.css'; // Import the custom CSS
-import Product1 from '../images/pluto.jpg';
-import BagProduct1 from '../images/cloth1.jpg';
-import ShoeProduct1 from '../images/cloth2.jpg';
-import HatProduct1 from '../images/cloth6.jpg';
-
-// Dummy product data
-const products = [
-  { id: 1, name: "Linkosi track", imgSrc: Product1 },
-  { id: 2, name: "Linkosi track", imgSrc: BagProduct1 },
-  { id: 3, name: "Linkosi brand", imgSrc: ShoeProduct1 },
-  { id: 4, name: "Linkosi fits", imgSrc: HatProduct1 }
-];
 
 const Shop = () => {
+  const [products, setProducts] = useState([]);
   const productElementRefs = useRef([]);
 
+  // Fetch products from Firestore
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productCollectionRef = collection(db, 'store_section');
+        const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
+        const productSnapshot = await getDocs(productQuery);
+        const productsList = productSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(productsList);
+      } catch (error) {
+        console.error('Error fetching products: ', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Intersection Observer for product reveal animations
   useEffect(() => {
     const observedRefs = productElementRefs.current;
-
     const observers = observedRefs.map((product, index) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -30,22 +41,16 @@ const Shop = () => {
         },
         { threshold: 0.2 }
       );
-
-      if (product) {
-        observer.observe(product);
-      }
-
+      if (product) observer.observe(product);
       return observer;
     });
 
     return () => {
       observers.forEach((observer, index) => {
-        if (observedRefs[index]) {
-          observer.unobserve(observedRefs[index]);
-        }
+        if (observedRefs[index]) observer.unobserve(observedRefs[index]);
       });
     };
-  }, []);
+  }, [products]);
 
   return (
     <section id="shop-section" className="new-shop-section">
@@ -58,7 +63,7 @@ const Shop = () => {
             ref={(el) => (productElementRefs.current[index] = el)}
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
-            <img src={product.imgSrc} alt={product.name} />
+            <img src={product.header_image} alt={product.name} />
             <h4>{product.name}</h4>
           </div>
         ))}

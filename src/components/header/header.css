@@ -35,7 +35,7 @@ h2 {
 
 @media (max-width: 768px) {
   h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
@@ -48,7 +48,7 @@ h2 {
 .desktop-nav a {
   margin-right: 15px;
   color: #000;
-  font-size: 1.2rem;
+  font-size: 1rem; /* Smaller text size for larger devices */
   text-decoration: none;
 }
 
@@ -56,10 +56,16 @@ h2 {
   color: #ff4081;
 }
 
+@media (min-width: 769px) {
+  .desktop-nav a {
+    font-size: 0.85rem; /* Even smaller for large devices */
+  }
+}
+
 /* Login link for sign in */
 .login-link {
   font-family: "Gowun Batang", serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   margin-left: 15px;
 }
@@ -101,10 +107,7 @@ h2 {
   .hamburger-container {
     display: flex;
     align-items: center;
-  }
-
-  .hamburger-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
   }
 
@@ -112,8 +115,9 @@ h2 {
     padding: 10px 15px;
   }
 
-  .hamburger-container {
-    margin-left: auto;
+  .hamburger-icon {
+    font-size: 1.8rem; /* Smaller icon */
+    margin-left: 10px;
   }
 }
 
@@ -125,10 +129,11 @@ h2 {
   right: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align links to the top */
+  padding-top: 60px; /* Push links down slightly */
   z-index: 1000;
 }
 
@@ -137,24 +142,14 @@ h2 {
 }
 
 .mobile-nav a {
-  font-size: 20px;
-  margin: 15px 0;
+  font-size: 16px; /* Smaller links for mobile */
+  margin: 10px 0;
   text-decoration: none;
   color: #000;
 }
 
 .mobile-nav a:hover {
   color: #ff4081;
-}
-
-.mobile-nav .order-icon {
-  display: flex;
-  align-items: center;
-}
-
-.mobile-nav .cart-icon {
-  display: flex;
-  align-items: center;
 }
 
 /* Scrolling behavior */

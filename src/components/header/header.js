@@ -1,15 +1,13 @@
-// Header.js
 import React, { useState, useEffect } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, provider, signInWithPopup, signOut } from '../firebase/firebase';
-import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa'; // Added Orders Icon (FaBoxOpen)
+import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user] = useAuthState(auth);
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +57,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <Link to="/" className="nav-link">Home</Link>
+          <Link to="/blog" className="nav-link">Blog</Link>
           <Link to="/women" className="nav-link">Women</Link>
           <Link to="/men" className="nav-link">Men</Link>
           <Link to="/kids" className="nav-link">Kids</Link>
@@ -68,7 +67,7 @@ const Header = () => {
           <Link to="/checkout" className="cart-icon">
             <FaShoppingCart />
           </Link>
-          <Link to="/orders" className="order-icon"> {/* Added Orders link */}
+          <Link to="/orders" className="order-icon">
             <FaBoxOpen />
           </Link>
           {!user && <span className="login-link" onClick={handleSignIn}>Sign In</span>}
@@ -103,6 +102,7 @@ const Header = () => {
       {/* Mobile Navigation */}
       <nav className={`mobile-nav ${menuOpen ? 'is-active' : ''}`}>
         <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
+        <Link to="/blog" className="nav-link" onClick={closeMenu}>Blog</Link>
         <Link to="/women" className="nav-link" onClick={closeMenu}>Women</Link>
         <Link to="/men" className="nav-link" onClick={closeMenu}>Men</Link>
         <Link to="/kids" className="nav-link" onClick={closeMenu}>Kids</Link>

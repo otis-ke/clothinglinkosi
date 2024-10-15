@@ -51,7 +51,7 @@ section {
   margin-bottom: 20px;
   color: #000;
   font-family: "Bodoni Moda SC", serif; /* Applied Bodoni Moda SC font */
-  text-transform: uppercase;
+  
 }
 
 /* Slider container */
@@ -105,7 +105,7 @@ section {
   font-size: 1rem;
   font-family: "Bodoni Moda SC", serif; /* Applied Bodoni Moda SC font */
   cursor: pointer;
-  text-transform: uppercase;
+  
   transition: background 0.3s ease, color 0.3s ease;
   opacity: 0.9; /* Slight transparency */
 }
@@ -168,7 +168,7 @@ section {
   }
 
   .new-in-heading {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .pagination-arrows-container {

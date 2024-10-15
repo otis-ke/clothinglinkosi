@@ -48,8 +48,16 @@
   cursor: pointer;
 }
 
-.footer-column ul li:hover {
-  text-decoration: underline;
+.footer-column ul li a {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Set default color */
+  font-family: 'Gowun Batang', serif;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-column ul li a:hover {
+  color: #e7c035; /* Change color on hover */
+  text-decoration: none; /* Ensure no underline on hover */
 }
 
 .footer-social {
@@ -60,6 +68,11 @@
 
 .footer-social a {
   color: #fff;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-social a:hover {
+  color: #e7c035; /* Add hover effect */
 }
 
 .logo-text {

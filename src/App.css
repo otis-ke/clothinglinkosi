@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+/* App.css */
+
+/* Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+/* Define CSS variables for light and dark modes */
+:root {
+  --font-family: 'Bodoni Moda', serif;
+  --text-color: black; /* Light mode text color */
+  --background-color: white; /* Light mode background color */
+  --heading-color: black; /* Light mode heading color */
+  --paragraph-color: black; /* Light mode paragraph color */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Define styles for headings and paragraphs */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  margin: 0; /* Remove default margin */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-size: 2.5rem; /* Example size for h1 */
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-size: 2rem; /* Example size for h2 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-size: 1.75rem; /* Example size for h3 */
+}
+
+h4 {
+  font-size: 1.5rem; /* Example size for h4 */
+}
+
+h5 {
+  font-size: 1.25rem; /* Example size for h5 */
+}
+
+h6 {
+  font-size: 1rem; /* Example size for h6 */
+}
+
+p {
+  color: var(--paragraph-color);
+  margin: 1rem 0; /* Example margin for paragraphs */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  --text-color: white; /* Dark mode text color */
+  --background-color: black; /* Dark mode background color */
+  --heading-color: white; /* Dark mode heading color */
+  --paragraph-color: white; /* Dark mode paragraph color */
 }

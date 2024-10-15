@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+.careers-container, 
+.careers-container * {
+  font-family: 'Bodoni Moda', serif;
+}
+
+.careers-container {
+  padding: 20px;
+  color: #333;
+}
+
+.careers-header {
+  text-align: center;
+}
+
+.careers-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.careers-title {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.careers-subtitle {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.careers-why {
+  margin: 30px 0;
+}
+
+.careers-why h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.careers-why ul {
+  list-style: disc;
+  margin-left: 20px;
+  line-height: 1.6;
+}
+
+.careers-positions {
+  margin: 30px 0;
+}
+
+.careers-positions h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.careers-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.career-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.career-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ff6f00;
+  font-weight: 600;
+}
+
+.career-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.careers-apply {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.careers-apply h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.careers-apply a {
+  color: #ff6f00;
+  text-decoration: none;
+}
+
+.careers-apply a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .careers-title {
+    font-size: 2rem;
+  }
+
+  .careers-subtitle {
+    font-size: 1rem;
+  }
+
+  .careers-why h2,
+  .careers-positions h2,
+  .careers-apply h2 {
+    font-size: 1.5rem;
+  }
+
+  .career-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .career-card p {
+    font-size: 0.9rem;
+  }
+}

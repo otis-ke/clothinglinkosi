@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+/* Global font styling using Bodoni Moda SC */
+.bodoni-moda-sc-regular {
+  font-family: "Bodoni Moda SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Main styling for the store section */
+.store-shop-section {
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  font-family: 'Bodoni Moda SC', serif;
+}
+
+.store-shop-section h1 {
+  font-family: 'Bodoni Moda SC', serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+/* Product Grid */
+.store-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* Spacing for larger devices */
+}
+
+/* Product Item Styling */
+.store-product-item {
+  text-align: center; /* Ensure text is centered under images */
+  opacity: 0;
+  transform: translateX(120px); /* Adjusted for a slightly larger animation offset */
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.store-product-item[data-direction="left"] {
+  transform: translateX(-120px); /* Adjusted for a slightly larger animation offset */
+}
+
+.store-product-item.store-reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.store-product-item img {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensures no spacing below the image */
+  margin: 0; /* No margin */
+}
+
+/* Responsive design for smaller devices */
+@media (max-width: 768px) {
+  .store-product-grid {
+    grid-template-columns: 1fr; /* Full width single column */
+    gap: 0; /* No gap between items on small devices */
+  }
+
+  .store-product-item {
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+  }
+
+  .store-product-item img {
+    width: 100vw; /* Ensures the image touches the edges */
+    height: auto;
+  }
+
+  .store-product-item h4 {
+    margin-top: 20px;
+    font-size: 1.2rem; /* Slightly larger font for names */
+  }
+}
+
+@media (max-width: 480px) {
+  .store-product-grid {
+    grid-template-columns: 1fr; /* Full width single column */
+    gap: 0; /* No gap between items on small devices */
+  }
+
+  .store-product-item {
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+  }
+
+  .store-product-item img {
+    width: 100vw; /* Ensures the image touches the edges */
+    height: auto;
+  }
+}

@@ -1,6 +1,7 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900&display=swap');
 
 /* Header styling */
 header {
@@ -46,6 +47,8 @@ h2 {
 }
 
 .desktop-nav a {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 400; /* Adjust weight as needed */
   margin-right: 15px;
   color: #000;
   font-size: 1rem; /* Smaller text size for larger devices */
@@ -132,8 +135,8 @@ h2 {
   background-color: rgba(255, 255, 255, 0.95);
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align links to the top */
-  padding-top: 60px; /* Push links down slightly */
+  justify-content: flex-start;
+  padding-top: 60px;
   z-index: 1000;
 }
 
@@ -142,7 +145,9 @@ h2 {
 }
 
 .mobile-nav a {
-  font-size: 16px; /* Smaller links for mobile */
+  font-family: "Bodoni Moda", serif;
+  font-weight: 400; /* Adjust weight as needed */
+  font-size: 16px;
   margin: 10px 0;
   text-decoration: none;
   color: #000;

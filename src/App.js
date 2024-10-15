@@ -1,19 +1,29 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Header from './components/header/header'; // Ensure correct path
-import Footer from './components/footer/footer'; // Ensure correct path
-import Men from './pages/men'; // Ensure correct path
-import Women from './pages/women'; // Ensure correct path
-import Kids from './pages/kids'; // Ensure correct path
-import SignIn from './pages/signin'; // Ensure correct path
-import Home from './pages/home'; // Ensure correct path
+import Header from './components/header/header'; 
+import Footer from './components/footer/footer'; 
+import Men from './pages/men'; 
+import Women from './pages/women'; 
+import Kids from './pages/kids'; 
+import SignIn from './pages/signin'; 
+import Home from './pages/home'; 
 import Checkout from './pages/checkout';
 import Payment from './pages/payment';
 import Orders from './pages/orders';
-import Gifts from './pages/gifts'; // Ensure correct path
-import Decor from './pages/decor'; // Ensure correct path
+import Gifts from './pages/gifts'; 
+import Decor from './pages/decor'; 
 import GetInTouch from './pages/getintouch';
 import PostDetail from './pages/blog';
+import AdminComponent from './pages/admin';
+// Uncomment these imports when you are ready to use them
+// import FAQs from './pages/faqs';  
+// import Returns from './pages/returns';  
+import Careers from './pages/careers.js';  
+// import About from './pages/about';  
+// import Sitemap from './pages/sitemap';  
+// import Terms from './pages/terms';  
+// import Privacy from './pages/privacy';  
+// import Cookies from './pages/cookies';  
 
 function App() {
   return (
@@ -33,6 +43,16 @@ function App() {
         <Route path="/gifts" element={<Gifts />} />
         <Route path="/decor" element={<Decor />} />
         <Route path="/getintouch" element={<GetInTouch />} />
+        {/* Uncomment these routes when you are ready to use them */}
+        {/* <Route path="/faqs" element={<FAQs />} /> */}
+        {/* <Route path="/returns" element={<Returns />} /> */}
+        <Route path="/careers" element={<Careers />} />
+        {/* <Route path="/about" element={<About />} /> */}
+        {/* <Route path="/sitemap" element={<Sitemap />} /> */}
+        {/* <Route path="/terms" element={<Terms />} /> */}
+        {/* <Route path="/privacy" element={<Privacy />} /> */}
+        {/* <Route path="/cookies" element={<Cookies />} /> */}
+        <Route path="/admin" element={<AdminComponent />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

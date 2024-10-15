@@ -1,129 +1,161 @@
-/* Global font styling using Bodoni Moda SC */
-.bodoni-moda-sc-regular {
-    font-family: "Bodoni Moda SC", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-  
-/* General Styling */
-body {
-    overflow-x: hidden;
-}
-  
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-  
-section {
-    min-height: 100vh;
-    overflow: hidden;
-}
-  
-/* Slider Section Styling */
-.slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-}
-  
-.slider-item {
-    flex: 0 0 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-}
-  
-.slider-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-  
-/* Slider arrows positioned below the images and centered */
-.slider-arrows {
-    position: static;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+/* Bodoni Moda Font Classes */
+.bodoni-moda-heading {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-.slider-arrow {
-    background: none;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    font-size: 30px;
-    pointer-events: all;
-    margin: 0 10px; /* Space between the arrows */
+.bodoni-moda-post-title {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 600;
+  font-optical-sizing: auto;
 }
-  
-/* Post details */
-.post-details {
-    padding: 20px;
-    background-color: #fff;
+
+.bodoni-moda-description {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
 }
-  
-.post-name {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+.bodoni-moda-date {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 500;
+  font-optical-sizing: auto;
 }
-  
-.post-description {
-    margin: 10px 0;
-    padding: 15px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
+
+.bodoni-moda-separator {
+  font-family: "Bodoni Moda", serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
 }
-  
-/* Blue shadow line and dots */
-.separator {
-    margin-top: 20px;
-    text-align: center;
+
+/* Container and Global Styles */
+.blog-container-renamed {
+  font-family: "Bodoni Moda", serif;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
-  
-.blue-line {
-    height: 2px;
-    background-color: blue;
-    width: 80%;
-    margin: 0 auto;
+
+/* Heading */
+.heading-renamed {
+  text-align: center;
+  margin: 20px 0;
 }
-  
-.dot-separator {
-    margin: 10px 0;
+
+/* Posts */
+.post-renamed {
+  margin: 40px 0;
+  background-color: #fff;
 }
-  
-.dot {
-    height: 12px;
-    width: 12px;
-    background-color: #ddd;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 5px;
+
+.post-title-renamed {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
-  
-.dot-separator .dot.active {
-    background-color: #000;
+
+/* Slider Styles */
+.slider-wrapper-renamed {
+  position: relative;
+  overflow: hidden;
 }
-  
+
+.slider-renamed {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-item-renamed {
+  flex: 0 0 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.slider-item-renamed img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Slider Arrows */
+.slider-arrows-renamed {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.arrow-button-renamed {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+/* Dots Indicator */
+.dots-wrapper-renamed {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.dot-renamed {
+  height: 12px;
+  width: 12px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.active-dot-renamed {
+  background-color: #000;
+}
+
+/* Post Information */
+.post-info-renamed {
+  padding: 20px;
+}
+
+.description-renamed {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+}
+
+/* Separator Line */
+.separator-renamed {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.line-renamed {
+  height: 2px;
+  background-color: blue;
+  width: 80%;
+  margin: 0 auto;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .slider-item {
-        flex: 0 0 50%;
-        margin: 0; /* No spacing between images */
-    }
-  
-    .slider-arrow {
-        font-size: 25px;
-    }
+  .slider-item-renamed {
+    flex: 0 0 50%;
+    margin: 0;
+  }
+
+  .arrow-button-renamed {
+    font-size: 25px;
+  }
 }
-  
+
 @media (max-width: 480px) {
-    .slider-item {
-        flex: 0 0 100%;
-        margin: 0; /* No spacing between images */
-    }
+  .slider-item-renamed {
+    flex: 0 0 100%;
+    margin: 0;
+  }
 }

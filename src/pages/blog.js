@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react';
 import { db } from './womenfire';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import './postDetail.css';
@@ -8,7 +8,6 @@ const PostDetail = () => {
   const [currentIndexes, setCurrentIndexes] = useState({});
   const sliderRefs = useRef([]);
 
-  // Fetch blog posts from Firestore
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
@@ -28,42 +27,28 @@ const PostDetail = () => {
     fetchBlogPosts();
   }, []);
 
-  // Slide movement handlers
   const moveLeft = (postId) => {
-    setCurrentIndexes((prev) => {
-      const post = blogPosts.find((p) => p.id === postId);
-      if (!post || !post.images) return prev;
-      return {
-        ...prev,
-        [postId]: prev[postId] > 0 ? prev[postId] - 1 : post.images.length - 1,
-      };
-    });
+    setCurrentIndexes((prev) => ({
+      ...prev,
+      [postId]: prev[postId] > 0 ? prev[postId] - 1 : blogPosts.find(p => p.id === postId).images.length - 1,
+    }));
   };
 
-  const moveRight = useCallback(
-    (postId) => {
-      setCurrentIndexes((prev) => {
-        const post = blogPosts.find((p) => p.id === postId);
-        if (!post || !post.images) return prev;
-        return {
-          ...prev,
-          [postId]: prev[postId] < post.images.length - 1 ? prev[postId] + 1 : 0,
-        };
-      });
-    },
-    [blogPosts]
-  );
+  const moveRight = useCallback((postId) => {
+    setCurrentIndexes((prev) => ({
+      ...prev,
+      [postId]: prev[postId] < blogPosts.find(p => p.id === postId).images.length - 1 ? prev[postId] + 1 : 0,
+    }));
+  }, [blogPosts]);
 
-  // Auto-slide every 4 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      blogPosts.forEach((post) => moveRight(post.id));
-    }, 4000);
-    return () => clearInterval(interval);
+    const intervals = blogPosts.map((post) =>
+      setInterval(() => moveRight(post.id), 4000)
+    );
+    return () => intervals.forEach((interval) => clearInterval(interval));
   }, [blogPosts, moveRight]);
 
-  // Update slider position based on index
-  useEffect(() => {
+  useLayoutEffect(() => {
     blogPosts.forEach((post, index) => {
       const slider = sliderRefs.current[index];
       if (slider) {
@@ -74,47 +59,57 @@ const PostDetail = () => {
   }, [currentIndexes, blogPosts]);
 
   return (
-    <section className="blog-section bodoni-moda-sc-regular">
-      {blogPosts.map((post, index) => (
-        <div key={post.id} className="post">
-          <h2 className="post-name bodoni-moda-sc-regular">{post.name}</h2>
+    <section className="blog-container-renamed">
+  <br />
+<br />
+<br />
+      <h2 className="bodoni-moda-heading">Explore the World of Linkosi Clothing</h2>
+      <hr />
 
-          <div className="slider-container">
-            <div className="slider" ref={(el) => (sliderRefs.current[index] = el)}>
-              <div className="slider-item">
-                <img src={post.header_image} alt={`Header of ${post.name}`} />
+      {blogPosts.map((post, index) => (
+        <div key={post.id} className="post-renamed">
+          <h2 className="bodoni-moda-post-title">{post.name}</h2>
+
+          <div className="slider-wrapper-renamed">
+            <div className="slider-renamed" ref={(el) => (sliderRefs.current[index] = el)}>
+              <div className="slider-item-renamed">
+                <img src={post.header_image} alt={`Header of ${post.name}`} loading="lazy" />
               </div>
               {post.images?.map((image, imgIndex) => (
-                <div key={imgIndex} className="slider-item">
-                  <img src={image} alt={`Slide ${imgIndex + 1} of ${post.name}`} />
+                <div key={imgIndex} className="slider-item-renamed">
+                  <img src={image} alt={`Slide ${imgIndex + 1} of ${post.name}`} loading="lazy" />
                 </div>
               ))}
             </div>
 
-            <div className="slider-arrows">
-              <button className="slider-arrow" onClick={() => moveLeft(post.id)}>
+            <div className="slider-arrows-renamed">
+              <button className="arrow-button-renamed" onClick={() => moveLeft(post.id)}>
                 &#10094;
               </button>
-              <button className="slider-arrow" onClick={() => moveRight(post.id)}>
+              <button className="arrow-button-renamed" onClick={() => moveRight(post.id)}>
                 &#10095;
               </button>
             </div>
+
+            <div className="dots-wrapper-renamed">
+              {post.images?.map((_, imgIndex) => (
+                <span
+                  key={imgIndex}
+                  className={`dot-renamed ${currentIndexes[post.id] === imgIndex ? 'active-dot-renamed' : ''}`}
+                ></span>
+              ))}
+            </div>
           </div>
 
-          <div className="post-details">
-            <p className="post-description">{post.description}</p>
-            <p className="post-date">
+          <div className="post-info-renamed">
+            <p className="bodoni-moda-description">{post.description}</p>
+            <p className="bodoni-moda-date">
               {new Date(post.publish_date.seconds * 1000).toLocaleDateString()}
             </p>
           </div>
 
-          <div className="separator">
-            <div className="blue-line"></div>
-            <div className="dot-separator">
-              <span className="dot"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-            </div>
+          <div className="separator-renamed">
+            <div className="line-renamed"></div>
           </div>
         </div>
       ))}

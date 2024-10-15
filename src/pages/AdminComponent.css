@@ -1,0 +1,167 @@
+/* Importing Bodoni Moda font */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+/* Bodoni Moda class */
+.bodoni-moda-admin {
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* You can adjust this weight */
+  font-style: normal;
+}
+
+/* Reset and General Styles for AdminComponent */
+.admin-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Login Form */
+.admin-container .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eaeaea;
+}
+
+.admin-container .login-form {
+  width: 300px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container .login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.admin-container .login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admin-container .login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Admin Layout */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.admin-container .sidebar {
+  background-color: #333;
+  color: white;
+  width: 250px;
+  padding: 20px;
+  height: 100vh;
+}
+
+.admin-container .sidebar nav button {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-container .sidebar nav button:hover {
+  background-color: #555;
+}
+
+.admin-container .sidebar button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-container .sidebar button:hover {
+  background-color: #0056b3;
+}
+
+/* Content Wrapper */
+.admin-container .content-wrapper {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin-bottom: 80px; /* Prevent content overlap with footer */
+}
+
+.admin-container .section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container .section a {
+  display: inline-block;
+  margin: 10px 0;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.admin-container .section a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .admin-container .sidebar {
+    display: none;
+  }
+
+  .admin-container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+  }
+
+  .admin-container .header a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  .admin-container .content-wrapper {
+    margin-bottom: 100px;
+  }
+
+  .admin-container .section a {
+    font-size: 1.1rem;
+    padding: 10px;
+    display: block;
+    margin-bottom: 10px;
+  }
+}

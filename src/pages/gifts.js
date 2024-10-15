@@ -164,7 +164,7 @@ const Gifts = () => {
         <div className="full-page-modal">
           <div className="full-page-content">
             <span className="close-modal" onClick={closeModal}>
-              &times;
+            <p>close</p>
             </span>
             <div className="full-page-header">
               <img

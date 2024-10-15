@@ -1,4 +1,3 @@
-// NewInSlider.js
 import React, { useState, useRef, useEffect } from 'react';
 import { db } from '../../pages/womenfire'; // Ensure this path points to your Firestore setup
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
@@ -78,14 +77,14 @@ const NewInSlider = () => {
     <section className="new-in-section bodoni-moda-sc-regular">
       <br />
       <h2 className="new-in-heading bodoni-moda-sc-bold">
-        EXPLORE The World Of LINKOSI CLOTHING
+        explore the world of linkosi clothing
       </h2>
       <div className="slider" ref={sliderRef}>
         {blogPosts.map((post, index) => (
           <div key={index} className="slider-item">
             <img
               src={post.header_image}
-              alt={`New In Post ${post.name}`}
+              alt={`new in post ${post.name}`}
             />
             <div
               className={`slider-overlay ${currentIndex === index ? 'visible' : ''}`}
@@ -94,7 +93,7 @@ const NewInSlider = () => {
                 className="shop-now-btn bodoni-moda-sc-medium"
                 onClick={() => handleExploreClick(post.id)}
               >
-                Explore Collection
+                explore collection
               </button>
             </div>
           </div>

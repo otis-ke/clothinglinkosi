@@ -17,7 +17,6 @@
   border: none;
   color: black;
   cursor: pointer;
-  text-transform: uppercase;
   position: relative;
   font-family: 'Lora', serif; /* Apply Lora specifically here */
 }
@@ -114,7 +113,6 @@
   font-weight: bold;
   color: #333;
   cursor: pointer;
-  text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   font-family: 'Lora', serif !important; /* Ensure Lora font */

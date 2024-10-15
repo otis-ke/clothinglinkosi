@@ -1,60 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900&display=swap');
 
 .about-us-container {
   opacity: 0;
   transform: translateX(-100px); /* Start from the left */
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-  text-align: center; /* Center content */
+  text-align: center;
   margin: 0 auto;
   padding: 2rem;
   max-width: 800px; /* Limit the width for better readability */
 }
 
-.about-us-container.animate {
+/* Trigger animation when the component is in view */
+.about-us-container.bodoni-animate {
   opacity: 1;
   transform: translateX(0); /* Moves to the center */
 }
 
-/* Scoped h1 to only affect AboutUs */
-.about-us-container h1,
-.about-us-container p {
-  font-family: 'Bodoni Moda SC', serif;
+/* Strict Font Usage for Heading */
+.bodoni-heading {
+  font-family: 'Bodoni Moda', serif; /* Strict Bodoni Moda font */
   font-optical-sizing: auto;
-  font-weight: 400; /* Adjust font weight if needed */
-}
-
-.about-us-container h1 {
-  font-size: 2rem; /* Font size for the heading */
-  margin-bottom: 1rem;
+  font-weight: 900; /* Heavy weight for heading */
+  font-size: 2.5rem;
   color: #333;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.15em; /* Proper spacing between letters */
+  word-spacing: 0.25em; /* Enhanced word spacing */
+  display: inline-block;
 }
 
-.about-us-container p {
-  font-size: 1rem;
-  line-height: 1.5;
+/* Strict Font Usage for Paragraph */
+.bodoni-paragraph {
+  font-family: 'Bodoni Moda', serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Normal weight for paragraphs */
+  font-size: 1.1rem;
+  line-height: 1.75; /* Line height for readability */
   color: #555;
-  margin: 1rem 0;
-  text-align: justify;
+  letter-spacing: 0.08em; /* Appropriate letter spacing for readability */
+  word-spacing: 0.12em; /* Adequate word spacing */
+  margin: 1.5rem 0;
+  text-align: center; /* Justify the text for better flow */
 }
 
-@media (max-width: 768px) {
-  .about-us-container h1 {
-    font-size: 1.75rem; /* Responsive font size */
-  }
-
-  .about-us-container p {
-    font-size: 0.9rem; /* Responsive font size */
-  }
-}
-
-.letter {
+/* Animating Each Letter */
+.bodoni-letter {
   display: inline-block;
   opacity: 0;
-  animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.6s forwards ease-in-out; /* Fade-in effect */
+  padding: 0 0.02em; /* Slight padding between each letter */
 }
 
 @keyframes fadeIn {
   to {
     opacity: 1;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .bodoni-heading {
+    font-size: 1.5rem; /* Responsive heading size */
+  }
+
+  .bodoni-paragraph {
+    text-align: center;
+    font-size: 0.9rem; /* Adjust paragraph font size for smaller screens */
   }
 }

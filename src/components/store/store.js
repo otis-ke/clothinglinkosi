@@ -1,45 +1,45 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../../pages/womenfire'; // Ensure this is your Firestore setup file
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import './shop.css'; // Import the custom CSS
+import './store.css'; // Updated the import to match the new component name
 
-const Shop = () => {
-  const [products, setProducts] = useState([]);
-  const productElementRefs = useRef([]);
+const Store = () => {
+  const [storeProducts, setStoreProducts] = useState([]);
+  const storeProductRefs = useRef([]);
 
   // Fetch products from Firestore
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchStoreProducts = async () => {
       try {
         const productCollectionRef = collection(db, 'store_section');
         const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
         const productSnapshot = await getDocs(productQuery);
-        const productsList = productSnapshot.docs.map((doc) => ({
+        const productList = productSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setProducts(productsList);
+        setStoreProducts(productList);
       } catch (error) {
-        console.error('Error fetching products: ', error);
+        console.error('Error fetching store products: ', error);
       }
     };
 
-    fetchProducts();
+    fetchStoreProducts();
   }, []);
 
   // Intersection Observer for product reveal animations
   useEffect(() => {
-    const observedRefs = productElementRefs.current;
+    const observedRefs = storeProductRefs.current;
     const observers = observedRefs.map((product, index) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            product.classList.add('reveal');
+            product.classList.add('store-reveal');
           } else {
-            product.classList.remove('reveal');
+            product.classList.remove('store-reveal');
           }
         },
-        { threshold: 0.2 }
+        { threshold: 0.3 } // Updated scroll factor for reveal animation
       );
       if (product) observer.observe(product);
       return observer;
@@ -50,17 +50,17 @@ const Shop = () => {
         if (observedRefs[index]) observer.unobserve(observedRefs[index]);
       });
     };
-  }, [products]);
+  }, [storeProducts]);
 
   return (
-    <section id="shop-section" className="new-shop-section">
-        <h1>Our Products</h1>
-      <div className="new-product-grid">
-        {products.map((product, index) => (
+    <section id="store-section" className="store-shop-section">
+      <h1>Our Products</h1>
+      <div className="store-product-grid">
+        {storeProducts.map((product, index) => (
           <div
             key={product.id}
-            className={`new-product-item product-item-${index}`}
-            ref={(el) => (productElementRefs.current[index] = el)}
+            className={`store-product-item product-item-${index}`}
+            ref={(el) => (storeProductRefs.current[index] = el)}
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
             <img src={product.header_image} alt={product.name} />
@@ -72,4 +72,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Store;

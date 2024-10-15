@@ -54,7 +54,7 @@ const Shop = () => {
 
   return (
     <section id="shop-section" className="new-shop-section">
-        <h1>Our Products</h1>
+      <h1>Our Products</h1>
       <div className="new-product-grid">
         {products.map((product, index) => (
           <div
@@ -64,7 +64,9 @@ const Shop = () => {
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
             <img src={product.header_image} alt={product.name} />
-            <h4>{product.name}</h4>
+            <div className="product-name-button">
+              <span>{product.name}</span>
+            </div>
           </div>
         ))}
       </div>

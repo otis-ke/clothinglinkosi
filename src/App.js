@@ -15,6 +15,7 @@ import Decor from './pages/decor';
 import GetInTouch from './pages/getintouch';
 import PostDetail from './pages/blog';
 import AdminComponent from './pages/admin';
+import LinkosiProfile from './pages/profile.jsx';
 // Uncomment these imports when you are ready to use them
 // import FAQs from './pages/faqs';  
 // import Returns from './pages/returns';  
@@ -42,6 +43,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/gifts" element={<Gifts />} />
         <Route path="/decor" element={<Decor />} />
+        <Route path="/company" element={<LinkosiProfile />} />
         <Route path="/getintouch" element={<GetInTouch />} />
         {/* Uncomment these routes when you are ready to use them */}
         {/* <Route path="/faqs" element={<FAQs />} /> */}

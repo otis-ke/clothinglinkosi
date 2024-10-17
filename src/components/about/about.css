@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900&display=swap');
+/* Ensure full-width background for the section */
+.about-us-wrapper {
+  background-color: rgb(12, 8, 27); /* Dark background for the entire section */
+  width: 100%;
+  padding: 2rem 0; /* Padding to ensure space above and below the content */
+}
 
 .about-us-container {
   opacity: 0;
@@ -7,7 +12,7 @@
   text-align: center;
   margin: 0 auto;
   padding: 2rem;
-  max-width: 800px; /* Limit the width for better readability */
+  max-width: 800px;
 }
 
 /* Trigger animation when the component is in view */
@@ -22,7 +27,7 @@
   font-optical-sizing: auto;
   font-weight: 900; /* Heavy weight for heading */
   font-size: 2.5rem;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   letter-spacing: 0.15em; /* Proper spacing between letters */
   word-spacing: 0.25em; /* Enhanced word spacing */
@@ -36,7 +41,7 @@
   font-weight: 400; /* Normal weight for paragraphs */
   font-size: 1.1rem;
   line-height: 1.75; /* Line height for readability */
-  color: #555;
+  color: #ffffff;
   letter-spacing: 0.08em; /* Appropriate letter spacing for readability */
   word-spacing: 0.12em; /* Adequate word spacing */
   margin: 1.5rem 0;

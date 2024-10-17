@@ -63,8 +63,10 @@ const PostDetail = () => {
   <br />
 <br />
 <br />
-      <h2 className="bodoni-moda-heading">Explore the World of Linkosi Clothing</h2>
-      <hr />
+<h2 class="explore-world-heading">
+  <span class="small-text">explore the world of</span>
+  <span class="large-text">Linkosi Clothing</span>
+</h2>
 
       {blogPosts.map((post, index) => (
         <div key={post.id} className="post-renamed">

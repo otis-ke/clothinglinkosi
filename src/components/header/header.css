@@ -1,21 +1,16 @@
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900&display=swap');
-
-/* Header styling */
+/* Header Styling - Default Transparent */
 header {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: transparent; /* Transparent on load */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
-  transition: background-color 0.3s ease, padding 0.3s ease;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .container {
@@ -26,102 +21,43 @@ header {
   padding-right: 30px;
 }
 
-/* Header text styling */
-h2 {
-  font-family: "Protest Guerrilla", sans-serif;
-  font-size: 36px;
+/* Initially hide the logo */
+h2.logo {
+  display: none;
+  font-family: "DM Serif Display", serif;
+  font-size: 24px;
   margin: 0;
-  transition: font-size 0.3s ease;
+  color: black; /* Will turn black after scrolling */
+  transition: color 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  h2 {
-    font-size: 22px;
-  }
-}
-
-/* Desktop Navigation */
-.desktop-nav {
+/* Icon styles */
+.icon-container {
   display: flex;
   align-items: center;
 }
 
-.desktop-nav a {
-  font-family: "Bodoni Moda", serif;
-  font-weight: 400; /* Adjust weight as needed */
-  margin-right: 15px;
-  color: #000;
-  font-size: 1rem; /* Smaller text size for larger devices */
-  text-decoration: none;
-}
-
-.desktop-nav a:hover {
-  color: #ff4081;
-}
-
-@media (min-width: 769px) {
-  .desktop-nav a {
-    font-size: 0.85rem; /* Even smaller for large devices */
-  }
-}
-
-/* Login link for sign in */
-.login-link {
-  font-family: "Gowun Batang", serif;
-  font-size: 1rem;
+.icon {
+  font-size: 1.5rem;
+  margin-left: 15px;
+  color: white; /* White icons on initial load */
   cursor: pointer;
-  margin-left: 15px;
+  transition: color 0.3s;
 }
 
-.login-link:hover {
+.icon:hover {
   color: #ff4081;
 }
 
-/* Cart Icon */
-.cart-icon {
-  font-size: 1.5rem;
-  margin-left: 15px;
-  color: #000;
-}
-
-.cart-icon:hover {
-  color: #ff4081;
-}
-
-/* Orders Icon */
-.order-icon {
-  font-size: 1.5rem;
-  margin-left: 15px;
-  color: #000;
-}
-
-.order-icon:hover {
-  color: #ff4081;
+/* Green color after sign-in */
+.user-icon.green {
+  color: green;
 }
 
 /* Hamburger menu */
 .hamburger-container {
-  display: none;
-  position: relative;
-  z-index: 101;
-}
-
-@media (max-width: 768px) {
-  .hamburger-container {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  header {
-    padding: 10px 15px;
-  }
-
-  .hamburger-icon {
-    font-size: 1.8rem; /* Smaller icon */
-    margin-left: 10px;
-  }
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 /* Mobile Navigation */
@@ -146,7 +82,7 @@ h2 {
 
 .mobile-nav a {
   font-family: "Bodoni Moda", serif;
-  font-weight: 400; /* Adjust weight as needed */
+  font-weight: 400;
   font-size: 16px;
   margin: 10px 0;
   text-decoration: none;
@@ -157,82 +93,49 @@ h2 {
   color: #ff4081;
 }
 
-/* Scrolling behavior */
-.is-scrolling {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 20px;
-}
-
-header.is-scrolling h2 {
-  font-size: 28px;
-}
-
-/* User image */
-.user-image {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-/* Dropdown user section for large screens */
-.user-dropdown {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 150px;
-  text-align: center;
-}
-
-.user-section:hover .user-dropdown {
-  display: flex;
-}
-
-/* Logout link */
-.logout-link {
-  cursor: pointer;
-  color: #ff4081;
-  margin-top: 10px;
-}
-
-/* For smaller devices, dropdown will appear in mobile nav */
+/* Responsive styles for small devices */
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
+  .icon-container {
+    display: flex;
+    padding: 5px;
   }
 
   .hamburger-container {
     display: flex;
-    align-items: center;
   }
 
-  /* User image inside mobile menu only */
-  .user-section {
-    display: none;
-  }
-
-  .mobile-nav .user-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  .icon {
+    font-size: 1.2rem;
+    margin-left: 10px;
   }
 }
 
-@media (min-width: 769px) {
-  .hamburger-container {
-    display: none;
+/* Larger device styling - bigger icons and more padding */
+@media (min-width: 768px) {
+  .icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    padding-right: 15px;
   }
+}
 
-  .mobile-nav {
-    display: none;
-  }
+/* Scroll-triggered styles */
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.9) !important; /* Force white background with transparency */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow when scrolled */
+}
+
+.scrolled .icon {
+  color: black !important; /* Force icons to turn black after scrolling */
+}
+
+.scrolled .logo {
+  display: block; /* Show logo after scrolling */
+  color: black !important; /* Turn logo text black after scrolling */
+}
+
+/* Transitions */
+.icon,
+.logo {
+  transition: color 0.3s ease-in-out, display 0.3s ease-in-out;
 }

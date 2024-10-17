@@ -3,35 +3,18 @@ import './header.css';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, provider, signInWithPopup, signOut } from '../firebase/firebase';
-import { FaShoppingCart, FaTimes, FaBoxOpen } from 'react-icons/fa';
+import { HiMenuAlt4 } from 'react-icons/hi';
+import { IoBagOutline } from 'react-icons/io5';
+import { FiUser } from 'react-icons/fi';
+import { MdScreenSearchDesktop } from 'react-icons/md';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user] = useAuthState(auth);
+  const [user] = useAuthState(auth); // Firebase session persists
+  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.classList.add('is-scrolling');
-      } else {
-        header.classList.remove('is-scrolling');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
 
   const handleSignIn = async () => {
     try {
@@ -49,86 +32,66 @@ const Header = () => {
     }
   };
 
+  // Detect scroll to change header background
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header>
+    <header className={scrolled ? 'scrolled' : ''}>
       <div className="container">
-        <h2>LINKOSI CLOTHING</h2>
+        <h2 className="logo">LINKOSI CLOTHING</h2>
 
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/blog" className="nav-link">Blog</Link>
-          <Link to="/women" className="nav-link">Women</Link>
-          <Link to="/men" className="nav-link">Men</Link>
-          <Link to="/kids" className="nav-link">Kids</Link>
-          <Link to="/gifts" className="nav-link">Gifts</Link>
-          <Link to="/decor" className="nav-link">Decor</Link>
-          <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
-          <Link to="/checkout" className="cart-icon">
-            <FaShoppingCart />
+        <div className="icon-container">
+          <Link to="/checkout" className="icon">
+            <IoBagOutline />
           </Link>
-          <Link to="/orders" className="order-icon">
-            <FaBoxOpen />
+          <Link to="/company" className="icon">
+            <MdScreenSearchDesktop />
           </Link>
-          {!user && <span className="login-link" onClick={handleSignIn}>Sign In</span>}
-        </nav>
 
-        {/* User Section for larger screens */}
-        {user ? (
-          <div className="user-section">
-            <img
-              src={user.photoURL}
-              alt={user.displayName}
-              className="user-image"
-              onClick={() => setMenuOpen(!menuOpen)}
-            />
-            {menuOpen && (
-              <div className="user-dropdown">
-                <span>{user.displayName}</span>
-                <span className="logout-link" onClick={handleSignOut}>Log Out</span>
-              </div>
-            )}
-          </div>
-        ) : null}
+          {user ? (
+            <FiUser className="icon user-icon" onClick={handleSignOut} />
+          ) : (
+            <FiUser className="icon user-icon" onClick={handleSignIn} />
+          )}
 
-        {/* Hamburger Menu Icon for Mobile */}
-        <div className="hamburger-container" onClick={toggleMenu}>
-          <span className={`hamburger-icon ${menuOpen ? 'open' : ''}`}>
-            {menuOpen ? <FaTimes /> : '☰'}
-          </span>
+          <HiMenuAlt4
+            className="icon hamburger-container"
+            onClick={toggleMenu}
+          />
         </div>
-      </div>
 
-      {/* Mobile Navigation */}
-      <nav className={`mobile-nav ${menuOpen ? 'is-active' : ''}`}>
-        <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
-        <Link to="/blog" className="nav-link" onClick={closeMenu}>Blog</Link>
-        <Link to="/women" className="nav-link" onClick={closeMenu}>Women</Link>
-        <Link to="/men" className="nav-link" onClick={closeMenu}>Men</Link>
-        <Link to="/kids" className="nav-link" onClick={closeMenu}>Kids</Link>
-        <Link to="/gifts" className="nav-link" onClick={closeMenu}>Gifts</Link>
-        <Link to="/decor" className="nav-link" onClick={closeMenu}>Decor</Link>
-        <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
-        <Link to="/checkout" className="nav-link" onClick={closeMenu}>
-          <FaShoppingCart /> Cart
-        </Link>
-        <Link to="/orders" className="nav-link" onClick={closeMenu}>
-          <FaBoxOpen /> Orders
-        </Link>
-        {user ? (
-          <div className="user-section">
-            <img
-              src={user.photoURL}
-              alt={user.displayName}
-              className="user-image"
-            />
-            <span>{user.displayName}</span>
-            <span className="logout-link" onClick={handleSignOut}>Log Out</span>
-          </div>
-        ) : (
-          <span className="login-link" onClick={handleSignIn}>Sign In</span>
-        )}
-      </nav>
+        <nav className={`mobile-nav ${menuOpen ? 'is-active' : ''}`}>
+          <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
+          <Link to="/blog" className="nav-link" onClick={closeMenu}>Blog</Link>
+          <Link to="/women" className="nav-link" onClick={closeMenu}>Women</Link>
+          <Link to="/men" className="nav-link" onClick={closeMenu}>Men</Link>
+          <Link to="/kids" className="nav-link" onClick={closeMenu}>Kids</Link>
+          <Link to="/gifts" className="nav-link" onClick={closeMenu}>Gifts</Link>
+          <Link to="/decor" className="nav-link" onClick={closeMenu}>Decor</Link>
+          <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
+
+          {user && (
+            <>
+              <div className="account-info">
+                <p>Welcome, {user.displayName || user.email}</p>
+                <button className="logout-button" onClick={handleSignOut}>
+                  Logout
+                </button>
+              </div>
+            </>
+          )}
+        </nav>
+      </div>
     </header>
   );
 };

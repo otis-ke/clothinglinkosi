@@ -1,0 +1,124 @@
+.profile-wrapper {
+    background-color: rgb(12, 8, 27); /* Dark background */
+    width: 100%;
+    padding: 2rem 0;
+  }
+  
+  .profile-container {
+    opacity: 0;
+    transform: translateX(-100px); /* Animation */
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 900px;
+  }
+  
+  .profile-container.profile-animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .profile-heading, .profile-paragraph, .collab-heading {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    word-spacing: 0.12em; /* Add word spacing */
+  }
+  
+  .profile-heading {
+    font-weight: 900;
+    font-size: 2.5rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  
+  .collab-heading {
+    font-weight: 900;
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .profile-paragraph {
+    text-align: left; /* For paragraphs to align text to left */
+    margin: 1rem 0;
+  }
+  
+  .form-wrapper {
+    margin-top: 2rem;
+    text-align: center; /* Center the form */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form inputs and labels */
+  }
+  
+  label {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: left; /* Align labels to the start */
+  }
+  
+  input, textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
+  
+  button.submit-button {
+    padding: 0.75rem 2rem;
+    background-color: #442652;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem; /* Make button larger */
+  }
+  
+  button.submit-button:hover {
+    background-color: #5754c3;
+    
+  }
+  
+  .success-message {
+    color: #4caf50;
+  }
+  
+  .error-message {
+    color: #f44336;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-heading {
+      font-size: 1.5rem;
+    }
+  
+    .profile-paragraph {
+      font-size: 0.9rem;
+    }
+  
+    .collab-heading {
+      font-size: 1.25rem;
+    }
+  
+    input, textarea {
+      max-width: 100%;
+    }
+  }
+  

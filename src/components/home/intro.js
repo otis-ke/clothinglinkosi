@@ -26,31 +26,19 @@ const IntroSection = () => {
     fetchHeaderImage();
   }, []);
 
-  // Intersection Observer for reveal animations
+  // Scroll effect: Hide title when user scrolls down, show when scrolling back up
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal');
-          } else {
-            entry.target.classList.remove('reveal');
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+      if (scrollPos > 100) {
+        introRef.current.classList.add('scroll-out');
+      } else {
+        introRef.current.classList.remove('scroll-out');
       }
-    );
+    };
 
-    if (introRef.current) {
-      const elements = introRef.current.querySelectorAll('.headings h1, .headings h4');
-      elements.forEach((element) => observer.observe(element));
-
-      return () => {
-        elements.forEach((element) => observer.unobserve(element));
-      };
-    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (!headerImage) {
@@ -62,8 +50,9 @@ const IntroSection = () => {
       <img src={headerImage} alt="Linkosi Clothing Background" className="background-image" />
       <div className="content">
         <div className="headings">
-          <h1 className="protest-guerrilla-regular">LINKOSI CLOTHING</h1>
-          <h4 className="merriweather-regular">Let your style shine</h4>
+          <h1 className="dm-serif-display-regular linkosi-clothing-title">LINKOSI CLOTHING</h1>
+          {/* Let your style shine - further down, stays within the section */}
+          <h4 className="dm-serif-display-regular section-footer">Let your style shine</h4>
         </div>
       </div>
     </div>

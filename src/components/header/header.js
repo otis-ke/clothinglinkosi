@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <header className={scrolled ? 'scrolled' : ''}>
       <div className="container">
-        <h2 className="logo">LINKOSI CLOTHING</h2>
+        <h2 className="logo">LINKOSI</h2>
 
         <div className="icon-container">
           <Link to="/checkout" className="icon">

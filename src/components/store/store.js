@@ -54,7 +54,7 @@ const Store = () => {
 
   return (
     <section id="store-section" className="store-shop-section">
-      <h1>Our Products</h1>
+      <h1>Our Collection</h1>
       <div className="store-product-grid">
         {storeProducts.map((product, index) => (
           <div

@@ -102,7 +102,10 @@ const LinkosiProfile = () => {
         </p>
 
         <div className="form-wrapper">
-          <h2 className="contact-heading">Send Us a Message</h2>
+        <h2 className="contact-heading" style={{ color: 'white' }}>
+       Send Us a Message
+      </h2>
+
           {formSubmitted && <p className="success-message">Message sent successfully!</p>}
           {formError && <p className="error-message">Error sending message. Please try again.</p>}
           <form onSubmit={handleSubmit}>

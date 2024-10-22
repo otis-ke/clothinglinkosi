@@ -11,7 +11,7 @@ const AdminComponent = () => {
   const updatesRef = useRef(null);
 
   const validUsername = 'admin';
-  const validPassword = '12345';
+  const validPassword = 'LCmodeling12';
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -35,16 +35,17 @@ const AdminComponent = () => {
 
   if (!isLoggedIn) {
     return (
-      <div className="login-container">
-        <form className="login-form" onSubmit={handleLogin}>
+      <div className="admin-login-container">
+        <form className="admin-login-form" onSubmit={handleLogin}>
           <h2 className="bodoni-moda-admin">Login</h2>
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="admin-error-message">{error}</p>}
           <input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            className="admin-login-input"
           />
           <input
             type="password"
@@ -52,60 +53,43 @@ const AdminComponent = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="admin-login-input"
           />
-          <button type="submit">Login</button>
+          <button type="submit" className="admin-login-button">Login</button>
         </form>
       </div>
     );
   }
 
   return (
-    <div className="admin-container">
-      <aside className="sidebar">
+    <div className="admin-panel-container">
+      <aside className="admin-sidebar">
         <h2 className="bodoni-moda-admin">Admin Panel</h2>
         <nav>
-          <button onClick={() => scrollToSection(ordersRef)}>Orders</button>
-          <button onClick={() => scrollToSection(updatesRef)}>Updates</button>
+          <button className="admin-nav-button" onClick={() => scrollToSection(ordersRef)}>Orders</button>
+          <button className="admin-nav-button" onClick={() => scrollToSection(updatesRef)}>Updates</button>
         </nav>
-        <button onClick={handleLogout}>Logout</button>
+        <button className="admin-logout-button" onClick={handleLogout}>Logout</button>
       </aside>
 
-      <div className="content-wrapper">
-        <section ref={ordersRef} className="section">
+      <div className="admin-content-wrapper">
+        <section ref={ordersRef} className="admin-section">
           <h2 className="bodoni-moda-admin">Orders Section</h2>
           <p>Manage and view orders here.</p>
         </section>
 
-        <section ref={updatesRef} className="section">
+        <section ref={updatesRef} className="admin-section">
           <h2 className="bodoni-moda-admin">Updates Section</h2>
-          <p>
-            <strong>Update Links:</strong>
-          </p>
+          <p><strong>Update Links:</strong></p>
           <ul>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/intro_section">home intro content</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/linkosiblog">blog content</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/women">womens products</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/men">Men products</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/kids_collections">kids products</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/gifts">gifts products</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/decor">decor products</a>
-            </li>
-            <li>
-              <a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/store_section">store section images</a>
-            </li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/intro_section">Home Intro Content</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/linkosiblog">Blog Content</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/women">Women's Products</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/men">Men's Products</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/kids_collections">Kids' Products</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/gifts">Gift Products</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/decor">Decor Products</a></li>
+            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/store_section">Store Section Images</a></li>
           </ul>
         </section>
       </div>

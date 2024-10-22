@@ -1,0 +1,124 @@
+/* General Section Styling */
+.new-arrivals-section {
+  text-align: center;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-in-out;
+}
+
+.new-arrivals-section.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Heading Styling */
+.world-heading-unique {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #000;
+  font-family: "Bodoni Moda SC", serif;
+}
+
+.world-heading-unique .small-heading-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1e2a36;
+}
+
+/* Slider Container */
+.slider-unique {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+/* Individual Slider Item */
+.slider-item-unique {
+  flex: 0 0 33%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.slider-item-unique img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Design for Smaller Devices */
+@media (max-width: 768px) {
+  .slider-item-unique {
+      flex: 0 0 100%;
+      margin: 1px;
+  }
+
+  .slider-item-unique img {
+      width: 100%;
+      height: 100vw;
+      object-fit: cover;
+      border-radius: 0;
+  }
+}
+
+/* Explore Text Styling Below Image */
+.explore-now-text {
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Bodoni Moda SC", serif;
+  margin-top: 10px;
+}
+
+/* Pagination Styling */
+.pagination-container-unique {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.arrow-left-unique,
+.arrow-right-unique {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.pagination-dots-unique {
+  display: flex;
+  gap: 10px;
+}
+
+.dot-unique {
+  height: 12px;
+  width: 12px;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot-active-unique {
+  background-color: #000;
+}
+
+/* Larger screen styling */
+@media (min-width: 769px) {
+  .slider-item-unique {
+      flex: 0 0 33%;
+      margin: 10px;
+  }
+
+  .slider-item-unique img {
+      height: 40vw;
+      width: auto;
+  }
+}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import IntroSection from '../components/home/intro';
-
+import NewInSliderUnique from '../components/exclusive/newI'
 import NewInSlider from '../components/newin/newin';
 import Shop from '../components/shop/shop';
 import AboutUs from '../components/about/about';
@@ -17,6 +17,7 @@ const Home = () => {
       <NewInSlider />
       
       <Shop />
+      <NewInSliderUnique />
       <AboutUs />
       <Contact />
      

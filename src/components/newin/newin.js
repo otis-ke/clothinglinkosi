@@ -77,9 +77,14 @@ const NewInSlider = () => {
     <section className="new-in-section bodoni-moda-sc-regular">
       <br />
       <h2 class="explore-world-heading">
-  <span class="small-text">explore the world of</span>
-  <span class="large-text">Linkosi Clothing</span>
+  <span class="small-text">Explore The World Of</span>
+  <span class="large-text">LINKOSI CLOTHING</span>
+ 
 </h2>
+<p className="quicksand-regular">Explore Our Seasonal Clothing,</p>
+<div></div>
+<p className="quicksand-semibold">Collections and Fresh Arrivals.</p>
+
 
       <div className="slider" ref={sliderRef}>
         {blogPosts.map((post, index) => (

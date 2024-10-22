@@ -5,19 +5,19 @@
 .bodoni-moda-admin {
   font-family: "Bodoni Moda", serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* You can adjust this weight */
+  font-weight: 400;
   font-style: normal;
 }
 
 /* Reset and General Styles for AdminComponent */
-.admin-container * {
+.admin-panel-container * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 /* Login Form */
-.admin-container .login-container {
+.admin-login-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,23 +25,24 @@
   background-color: #eaeaea;
 }
 
-.admin-container .login-form {
-  width: 300px;
+.admin-login-form {
+  width: 320px;
   background-color: white;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.admin-container .login-form input {
+.admin-login-input {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
-.admin-container .login-form button {
+.admin-login-button {
   width: 100%;
   padding: 12px;
   background-color: #007bff;
@@ -50,20 +51,26 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.admin-container .login-form button:hover {
+.admin-login-button:hover {
   background-color: #0056b3;
 }
 
+.admin-error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
 /* Admin Layout */
-.admin-container {
+.admin-panel-container {
   display: flex;
   min-height: 100vh;
   overflow: hidden;
 }
 
-.admin-container .sidebar {
+.admin-sidebar {
   background-color: #333;
   color: white;
   width: 250px;
@@ -71,7 +78,7 @@
   height: 100vh;
 }
 
-.admin-container .sidebar nav button {
+.admin-nav-button {
   display: block;
   margin-bottom: 15px;
   padding: 10px 15px;
@@ -85,11 +92,11 @@
   transition: background-color 0.3s ease;
 }
 
-.admin-container .sidebar nav button:hover {
+.admin-nav-button:hover {
   background-color: #555;
 }
 
-.admin-container .sidebar button {
+.admin-logout-button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -99,19 +106,18 @@
   transition: background-color 0.3s ease;
 }
 
-.admin-container .sidebar button:hover {
+.admin-logout-button:hover {
   background-color: #0056b3;
 }
 
 /* Content Wrapper */
-.admin-container .content-wrapper {
+.admin-content-wrapper {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  margin-bottom: 80px; /* Prevent content overlap with footer */
 }
 
-.admin-container .section {
+.admin-section {
   margin-bottom: 20px;
   padding: 20px;
   background-color: white;
@@ -119,7 +125,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.admin-container .section a {
+.admin-section a {
   display: inline-block;
   margin: 10px 0;
   color: #007bff;
@@ -128,18 +134,18 @@
   transition: color 0.3s ease;
 }
 
-.admin-container .section a:hover {
+.admin-section a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .admin-container .sidebar {
+  .admin-sidebar {
     display: none;
   }
 
-  .admin-container .header {
+  .admin-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,18 +153,18 @@
     padding: 15px;
   }
 
-  .admin-container .header a {
+  .admin-header a {
     color: white;
     margin-left: 15px;
     text-decoration: none;
     font-size: 1.1rem;
   }
 
-  .admin-container .content-wrapper {
+  .admin-content-wrapper {
     margin-bottom: 100px;
   }
 
-  .admin-container .section a {
+  .admin-section a {
     font-size: 1.1rem;
     padding: 10px;
     display: block;

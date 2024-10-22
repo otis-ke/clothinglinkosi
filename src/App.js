@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/header/header'; 
 import Footer from './components/footer/footer'; 
@@ -16,17 +16,23 @@ import GetInTouch from './pages/getintouch';
 import PostDetail from './pages/blog';
 import AdminComponent from './pages/admin';
 import LinkosiProfile from './pages/profile.jsx';
-// Uncomment these imports when you are ready to use them
-// import FAQs from './pages/faqs';  
-// import Returns from './pages/returns';  
-import Careers from './pages/careers.js';  
-// import About from './pages/about';  
-// import Sitemap from './pages/sitemap';  
-// import Terms from './pages/terms';  
-// import Privacy from './pages/privacy';  
-// import Cookies from './pages/cookies';  
+import Careers from './pages/careers.js';
+import Loader from './components//home/Loader.js';  // Import the Loader component
 
 function App() {
+  const [loading, setLoading] = useState(true); // Manage global loading state
+
+  // Simulate loading process for the app
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000); // Show loader for at least 3 seconds
+    return () => clearTimeout(timer); // Clear timeout when component unmounts
+  }, []);
+
+  // Show loader if the app is still loading
+  if (loading) {
+    return <Loader fullScreen={true} />; // Loader covering the entire app
+  }
+
   return (
     <Router>
       <Header />
@@ -45,15 +51,7 @@ function App() {
         <Route path="/decor" element={<Decor />} />
         <Route path="/company" element={<LinkosiProfile />} />
         <Route path="/getintouch" element={<GetInTouch />} />
-        {/* Uncomment these routes when you are ready to use them */}
-        {/* <Route path="/faqs" element={<FAQs />} /> */}
-        {/* <Route path="/returns" element={<Returns />} /> */}
         <Route path="/careers" element={<Careers />} />
-        {/* <Route path="/about" element={<About />} /> */}
-        {/* <Route path="/sitemap" element={<Sitemap />} /> */}
-        {/* <Route path="/terms" element={<Terms />} /> */}
-        {/* <Route path="/privacy" element={<Privacy />} /> */}
-        {/* <Route path="/cookies" element={<Cookies />} /> */}
         <Route path="/admin" element={<AdminComponent />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

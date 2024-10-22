@@ -1,3 +1,4 @@
+/* Main Container */
 .payment-container {
   max-width: 700px;
   margin: 30px auto;
@@ -8,36 +9,58 @@
   font-family: 'Gowun Batang', serif;
 }
 
+/* Headings */
 h2, h3 {
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.billing-info, .payment-methods {
+/* Billing and Payment Sections */
+.billing-info, 
+.payment-methods {
   margin-bottom: 30px;
 }
 
-.billing-info label, .payment-details label {
+.billing-info label, 
+.payment-details label {
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   font-size: 1rem;
+  color: black;
+  font-weight: bold;
 }
 
-.billing-info input, .payment-details input, .payment-details textarea {
+/* Inputs and Textareas */
+.billing-info input, 
+.payment-details input, 
+.payment-details textarea {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   font-size: 1rem;
-  margin-top: 8px;
-  margin-bottom: 15px;
+  color: black;
+  background-color: #fff;
+  margin-top: 5px;
+  margin-bottom: 20px;
   border-radius: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid #aaa;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
+.billing-info input:focus, 
+.payment-details input:focus, 
+.payment-details textarea:focus {
+  border-color: #3cb371;
+  outline: none;
+}
+
+/* Textarea */
 textarea {
   resize: vertical;
 }
 
+/* Cart Items */
 .cart-items .payment-item {
   display: flex;
   justify-content: space-between;
@@ -58,6 +81,15 @@ textarea {
   margin: 0;
 }
 
+/* Total Amount */
+.cart-items h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* Payment Methods */
 .payment-methods {
   margin-top: 20px;
 }
@@ -70,7 +102,7 @@ textarea {
   border-radius: 6px;
   cursor: pointer;
   border: 1px solid #ddd;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
 }
 
 .payment-option.selected {
@@ -87,22 +119,45 @@ textarea {
   margin-right: 12px;
 }
 
-.pay-btn {
+/* Button Styles */
+button, .pay-btn, .mpesa-btn {
   width: 100%;
   padding: 15px;
   font-size: 1.2rem;
-  color: white;
+  color: black; /* Ensure black text */
   background-color: #3cb371;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
-.pay-btn:hover {
+button:hover, .pay-btn:hover, .mpesa-btn:hover {
   background-color: #2e8b57;
 }
 
+button:active, .pay-btn:active, .mpesa-btn:active {
+  background-color: #267347;
+}
+
+/* Specific Styles for Lipa na M-Pesa Button */
+.mpesa-btn {
+  background-color: #25a143; /* M-Pesa green */
+  margin-top: 10px;
+}
+
+.mpesa-btn:hover {
+  background-color: #1e8239;
+}
+
+/* Paypal Button Container */
+.paypal-button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .payment-container {
     padding: 15px;
@@ -112,7 +167,7 @@ textarea {
     font-size: 1.5rem;
   }
 
-  .pay-btn {
+  .pay-btn, .mpesa-btn {
     font-size: 1rem;
   }
 }

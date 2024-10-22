@@ -36,11 +36,12 @@
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   font-family: 'DM Serif Display', serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow */
+  white-space: nowrap; /* Ensure text stays on one line */
 }
 
 .headings h4.section-footer {
   position: absolute; /* Make it stay within the section */
-  bottom: 2%; /* Position it at the very bottom */
+  bottom: 5%; /* Move it further down */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Adjust for perfect centering */
   font-size: 2.5vw; /* Responsive font size */
@@ -49,6 +50,7 @@
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   font-family: 'DM Serif Display', serif;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  white-space: nowrap; /* Ensure h4 stays on one line */
 }
 
 /* Scroll Out Animation */
@@ -61,12 +63,14 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .headings h1 {
-    font-size: 20vw; /* Larger font on smaller screens */
+    font-size: 8.5vw; /* Smaller font size for small devices */
+    white-space: nowrap; /* Ensure text stays on one line */
   }
 
   .headings h4.section-footer {
-    font-size: 23px; /* Larger font on smaller screens */
-    bottom: -60%; /* Ensure it's positioned correctly on small devices */
+    font-size: 5vw; /* Slightly larger font size for small screens */
+    bottom: -200%; /* Position it a bit higher on small screens */
+    white-space: nowrap; /* Ensure h4 stays on one line */
   }
 }
 
@@ -76,8 +80,8 @@
   }
 
   .headings h4.section-footer {
-    font-size: 2.5vw;
-    bottom: -10%; /* Ensure it's close to the bottom of the section */
+    font-size: 2.5vw; /* Keep it responsive */
+    bottom: -20%; /* Ensure it's close to the bottom of the section */
   }
 }
 

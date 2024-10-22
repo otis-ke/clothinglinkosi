@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../../pages/womenfire'; // Ensure this is your Firestore setup file
 import { collection, getDocs } from 'firebase/firestore';
+import Loader from './Loader'; // Import the Loader component
 import './intro.css';
 
 const IntroSection = () => {
   const [headerImage, setHeaderImage] = useState(null);
+  const [loading, setLoading] = useState(true); // New state to track loading
   const introRef = useRef(null);
 
   // Fetch header image from Firestore
@@ -18,8 +20,10 @@ const IntroSection = () => {
           ...doc.data(),
         }));
         setHeaderImage(introList[0].header_content); // Assuming the image field is named 'header_content'
+        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         console.error('Error fetching header image: ', error);
+        setLoading(false); // Ensure loading is stopped even if there's an error
       }
     };
 
@@ -41,17 +45,18 @@ const IntroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!headerImage) {
-    return <div>Loading...</div>; // Render a loading state while fetching data
+  // If loading, show the Loader component
+  if (loading) {
+    return <Loader />;
   }
 
+  // Render the content when the header image is fetched
   return (
     <div className="intro-section" ref={introRef}>
       <img src={headerImage} alt="Linkosi Clothing Background" className="background-image" />
       <div className="content">
         <div className="headings">
           <h1 className="dm-serif-display-regular linkosi-clothing-title">LINKOSI CLOTHING</h1>
-          {/* Let your style shine - further down, stays within the section */}
           <h4 className="dm-serif-display-regular section-footer">Let your style shine</h4>
         </div>
       </div>

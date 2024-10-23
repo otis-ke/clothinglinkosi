@@ -15,11 +15,11 @@ const NewInSliderUnique = () => {
   const updateGreeting = () => {
     const currentTime = new Date().getHours();
     if (currentTime < 12) {
-      setGreeting("Good morning");
+      setGreeting("GOOD MORNING");
     } else if (currentTime < 18) {
-      setGreeting("Good afternoon");
+      setGreeting("GOOD AFTERNOON");
     } else {
-      setGreeting("Good evening");
+      setGreeting("GOOD EVENING");
     }
   };
 
@@ -108,7 +108,7 @@ const NewInSliderUnique = () => {
       <h2 className="world-heading-unique">
         <span className="small-heading-text">{greeting}</span>
       </h2>
-      <p className="quicksand-custom-regular">Explore Our Top Recommendations For You,</p>
+      <p className="quicksand-custom-regular">Explore Our Top Recommendations For You.</p>
 
       <div className="slider-unique" ref={sliderRef}>
         {collectionsData.map((post, index) => (

@@ -54,7 +54,7 @@
 @media (max-width: 768px) {
   .slider-item-unique {
       flex: 0 0 100%;
-      margin: 1px;
+      margin: 6px;
   }
 
   .slider-item-unique img {

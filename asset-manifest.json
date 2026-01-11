@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.7cf87c46.css",
-    "main.js": "/static/js/main.fb65f789.js",
-    "static/js/453.ed3810f9.chunk.js": "/static/js/453.ed3810f9.chunk.js",
-    "static/media/men.jpg": "/static/media/men.8f2b8b33b10bea2bcfb9.jpg",
-    "index.html": "/index.html",
-    "main.7cf87c46.css.map": "/static/css/main.7cf87c46.css.map",
-    "main.fb65f789.js.map": "/static/js/main.fb65f789.js.map",
-    "453.ed3810f9.chunk.js.map": "/static/js/453.ed3810f9.chunk.js.map"
+    "main.css": "/clothinglinkosi/static/css/main.7cf87c46.css",
+    "main.js": "/clothinglinkosi/static/js/main.d6655478.js",
+    "static/js/453.ed3810f9.chunk.js": "/clothinglinkosi/static/js/453.ed3810f9.chunk.js",
+    "static/media/men.jpg": "/clothinglinkosi/static/media/men.8f2b8b33b10bea2bcfb9.jpg",
+    "index.html": "/clothinglinkosi/index.html",
+    "main.7cf87c46.css.map": "/clothinglinkosi/static/css/main.7cf87c46.css.map",
+    "main.d6655478.js.map": "/clothinglinkosi/static/js/main.d6655478.js.map",
+    "453.ed3810f9.chunk.js.map": "/clothinglinkosi/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cf87c46.css",
-    "static/js/main.fb65f789.js"
+    "static/js/main.d6655478.js"
   ]
 }

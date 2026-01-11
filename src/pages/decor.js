@@ -88,7 +88,7 @@ const Decor = () => {
   // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`#/decor?id=${product.id}`); // Updated here
+    navigate(`/decor?id=${product.id}`);
   };
 
   // Close modal

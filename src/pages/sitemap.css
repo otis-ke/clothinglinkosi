@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+.sitemap-container {
+  padding: 120px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Bodoni Moda', serif;
+  color: #333;
+}
+
+.sitemap-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #333;
+}
+
+.sitemap-section {
+  margin-bottom: 40px;
+}
+
+.sitemap-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.sitemap-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sitemap-section li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.sitemap-section a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.sitemap-section a:hover {
+  color: #ff4081;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .sitemap-container {
+    padding: 100px 15px 40px;
+  }
+
+  .sitemap-content h1 {
+    font-size: 2rem;
+  }
+
+  .sitemap-section h2 {
+    font-size: 1.5rem;
+  }
+}

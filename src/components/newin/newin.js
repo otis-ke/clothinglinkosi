@@ -70,7 +70,7 @@ const NewInSlider = () => {
   }, [blogPosts.length]);
 
   const handleExploreClick = (postId) => {
-    navigate(`/PostDetail/${postId}`); // Navigate to PostDetail with post ID
+    navigate(`/postDetail/${postId}`); // Navigate to PostDetail with post ID
   };
 
   return (

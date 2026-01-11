@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+.returns-container {
+  padding: 120px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Bodoni Moda', serif;
+  color: #333;
+}
+
+.returns-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #333;
+}
+
+.returns-section {
+  margin-bottom: 40px;
+}
+
+.returns-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.returns-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  color: #555;
+}
+
+.returns-section p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.returns-section ul,
+.returns-section ol {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.returns-section li {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.returns-section a {
+  color: #ff4081;
+  text-decoration: none;
+}
+
+.returns-section a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .returns-container {
+    padding: 100px 15px 40px;
+  }
+
+  .returns-content h1 {
+    font-size: 2rem;
+  }
+
+  .returns-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .returns-section h3 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+.cookies-container {
+  padding: 120px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Bodoni Moda', serif;
+  color: #333;
+}
+
+.cookies-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.last-updated {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.cookies-section {
+  margin-bottom: 40px;
+}
+
+.cookies-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.cookies-section h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  color: #555;
+}
+
+.cookies-section p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.cookies-section ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.cookies-section li {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.cookies-section a {
+  color: #ff4081;
+  text-decoration: none;
+}
+
+.cookies-section a:hover {
+  text-decoration: underline;
+}
+
+.cookies-section strong {
+  color: #333;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .cookies-container {
+    padding: 100px 15px 40px;
+  }
+
+  .cookies-content h1 {
+    font-size: 2rem;
+  }
+
+  .cookies-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cookies-section h3 {
+    font-size: 1.2rem;
+  }
+}

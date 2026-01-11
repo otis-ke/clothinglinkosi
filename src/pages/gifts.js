@@ -83,7 +83,7 @@ const Gifts = () => {
 
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`#/gifts?id=${product.id}`); // Updated here
+    navigate(`/gifts?id=${product.id}`);
   };
 
   const closeModal = () => {

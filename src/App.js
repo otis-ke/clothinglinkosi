@@ -17,7 +17,13 @@ import PostDetail from './pages/blog';
 import AdminComponent from './pages/admin';
 import LinkosiProfile from './pages/profile.jsx';
 import Careers from './pages/careers.js';
-import Loader from './components//home/Loader.js';  // Import the Loader component
+import FAQs from './pages/faqs';
+import Returns from './pages/returns';
+import Sitemap from './pages/sitemap';
+import Terms from './pages/terms';
+import Privacy from './pages/privacy';
+import Cookies from './pages/cookies';
+import Loader from './components/home/Loader.js';  // Import the Loader component
 
 function App() {
   const [loading, setLoading] = useState(true); // Manage global loading state
@@ -52,6 +58,12 @@ function App() {
         <Route path="/company" element={<LinkosiProfile />} />
         <Route path="/getintouch" element={<GetInTouch />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/returns" element={<Returns />} />
+        <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/cookies" element={<Cookies />} />
         <Route path="/admin" element={<AdminComponent />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

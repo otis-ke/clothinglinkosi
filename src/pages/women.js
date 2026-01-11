@@ -86,7 +86,7 @@ const Women = () => {
   // Handle opening product modal
   const openProductPage = (product) => {
     setModalProduct(product);
-    navigate(`#/women?id=${product.id}`); // Change here
+    navigate(`/women?id=${product.id}`);
   };
 
   // Close modal

@@ -98,6 +98,6 @@
   }
 
   .collection-section.animate {
-    transform: translateY(0); /* Moves to its original position */
+    transform: translateY(0); /* its original position */
   }
 }

@@ -5,11 +5,16 @@
 .checkout-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  font-family: 'Gowun Batang', serif; /* Same font as the footer */
+  font-family: 'Gowun Batang', serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.checkout-container:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
 }
 
 h2 {
@@ -98,19 +103,27 @@ h2 {
 
 .proceed-btn {
   width: 100%;
-  background-color: #3cb371;
+  background-color: #000;
   color: white;
-  border: none;
-  padding: 15px;
-  font-size: 1.2rem;
+  border: 2px solid #000;
+  padding: 16px 24px;
+  font-size: 1.1rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
   margin-top: 30px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: 'Gowun Batang', serif;
 }
 
 .proceed-btn:hover {
-  background-color: #2d8f59;
+  background-color: transparent;
+  color: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */

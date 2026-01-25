@@ -2,11 +2,16 @@
 .payment-container {
   max-width: 700px;
   margin: 30px auto;
-  padding: 30px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   font-family: 'Gowun Batang', serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.payment-container:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* Headings */
@@ -51,8 +56,9 @@ h2, h3 {
 .billing-info input:focus, 
 .payment-details input:focus, 
 .payment-details textarea:focus {
-  border-color: #3cb371;
+  border-color: #ff4081;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.1);
 }
 
 /* Textarea */
@@ -106,8 +112,8 @@ textarea {
 }
 
 .payment-option.selected {
-  background-color: #e8f4e3;
-  border: 1px solid #a8d5a5;
+  background-color: #fff5f9;
+  border: 1px solid #ff4081;
 }
 
 .payment-option input {
@@ -119,36 +125,49 @@ textarea {
   margin-right: 12px;
 }
 
-/* Button Styles */
-button, .pay-btn, .mpesa-btn {
+/* Button Styles - Elegant Black/White/Pink Theme */
+button, .pay-btn {
   width: 100%;
-  padding: 15px;
-  font-size: 1.2rem;
-  color: black; /* Ensure black text */
-  background-color: #3cb371;
-  border: none;
-  border-radius: 6px;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #000;
+  border: 2px solid #000;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: 'Gowun Batang', serif;
 }
 
-button:hover, .pay-btn:hover, .mpesa-btn:hover {
-  background-color: #2e8b57;
+button:hover, .pay-btn:hover {
+  background-color: transparent;
+  color: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:active, .pay-btn:active, .mpesa-btn:active {
-  background-color: #267347;
+button:active, .pay-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Specific Styles for Lipa na M-Pesa Button */
+/* Specific Styles for Lipa na M-Pesa Button - Keep Green as it's their brand */
 .mpesa-btn {
-  background-color: #25a143; /* M-Pesa green */
-  margin-top: 10px;
+  background-color: #25a143;
+  border: 2px solid #25a143;
+  color: white;
+  margin-top: 12px;
 }
 
 .mpesa-btn:hover {
   background-color: #1e8239;
+  border-color: #1e8239;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 161, 67, 0.3);
 }
 
 /* Paypal Button Container */

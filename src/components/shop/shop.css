@@ -2,20 +2,38 @@
 
 /* Main styling for the shop section */
 .new-shop-section {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
   background-color: #fff;
   font-family: 'Bodoni Moda SC', serif;
 }
 
-.new-shop-section h1 {
+/* MAIN TITLE */
+.shop-title {
   font-family: 'Bodoni Moda SC', serif;
-  font-weight: 400;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+  font-weight: 700; /* Stronger & bold */
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-/* Product Grid for larger screens */
+/* SUBTITLE */
+.shop-subtitle {
+  font-family: 'Bodoni Moda SC', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 50px;
+}
+
+.shop-subtitle span {
+  margin: 0 6px;
+}
+
+/* Product Grid */
 .new-product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -25,8 +43,8 @@
 /* Product Item Styling */
 .new-product-item {
   text-align: center;
-  position: relative; /* Allow positioning of the button */
-  overflow: hidden; /* Ensure content doesn't overflow */
+  position: relative;
+  overflow: hidden;
   opacity: 0;
   transform: translateX(100px);
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
@@ -48,74 +66,75 @@
   border: none;
 }
 
-/* Button for Product Name */
+/* Product Name Button */
 .product-name-button {
   position: absolute;
-  bottom: 20px; /* Position at the bottom of the image */
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%); /* Center the button */
-  background-color: #fae7e71a; /* Transparent white background */
-  color: #fff6f6; /* Black text */
-  padding: 10px 20px; /* Padding for button */
-  border: 2px solid rgba(131, 129, 129, 0.9); /* Solid black border */
-  border-radius: 0; /* No rounded corners */
-  font-size: 1rem; /* Font size */
-  transition: background-color 0.3s, color 0.3s; /* Smooth background and color transition */
-  text-transform: uppercase; /* Uppercase text */
-  font-family: 'Bodoni Moda SC', serif; /* Font style */
+  transform: translateX(-50%);
+  background-color: rgba(250, 231, 231, 0.1);
+  color: #ffffff;
+  padding: 10px 22px;
+  border: 1.5px solid rgba(200, 200, 200, 0.9);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Bodoni Moda SC', serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .product-name-button:hover {
-  background-color: rgba(216, 201, 201, 0.8); /* Darker background on hover */
-  color: #000000; /* White text on hover */
+  background-color: rgba(216, 201, 201, 0.85);
+  color: #000;
 }
 
-/* Responsive design for smaller devices */
+/* Tablet & Mobile */
 @media (max-width: 768px) {
+  .shop-title {
+    font-size: 2.2rem;
+  }
+
+  .shop-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+  }
+
   .new-product-grid {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 0; /* Remove any gap between items */
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .new-product-item {
-    padding: 0; /* Remove padding on small devices */
+    padding: 0;
   }
 
   .new-product-item img {
-    width: 100vw; /* Full viewport width to ensure it touches both edges */
-    height: auto;
-    margin: 0; /* Remove any margin */
+    width: 100vw;
+    margin: 0;
   }
 }
 
 @media (max-width: 480px) {
-  /* Remove padding and margins from the section */
   .new-shop-section {
-    padding: 0;
-    margin: 0;
+    padding: 20px 0;
   }
 
-  /* Ensure the product grid takes up the full viewport width */
   .new-product-grid {
     width: 100vw;
     padding: 0;
     margin: 0;
-    grid-template-columns: 1fr; /* Single column for small screens */
-    gap: 0; /* Remove gap between images */
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  /* Ensure the product items touch the edges of the screen */
   .new-product-item {
-    margin: 10px; /* No margins */
-    padding: 0; /* No padding */
-    flex: 0 0 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Ensure images take up the full width of the viewport */
   .new-product-item img {
-    width: 100vw; /* Full viewport width */
+    width: 100vw;
     height: auto;
-    border-radius: 0; /* No border-radius */
-    margin: 0; /* Remove any default margin */
+    margin: 0;
   }
 }

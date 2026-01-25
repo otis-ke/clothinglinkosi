@@ -4,10 +4,8 @@
 .footer {
   background-color: #000;
   color: #fff;
-  padding: 40px 20px;
+  padding: 50px 20px;
   font-family: 'Gowun Batang', serif;
-  position: relative;
-  overflow: hidden;
 }
 
 .footer-container {
@@ -16,14 +14,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  animation: fadeInUp 1s ease-out;
 }
 
+/* LINKS */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: 40px;
 }
 
@@ -38,28 +36,25 @@
 }
 
 .footer-column ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
 .footer-column ul li {
   margin-bottom: 10px;
-  font-size: 14px;
-  cursor: pointer;
 }
 
 .footer-column ul li a {
-  text-decoration: none; /* Remove underline */
-  color: #fff; /* Set default color */
-  font-family: 'Gowun Batang', serif;
-  transition: color 0.3s ease-in-out;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-column ul li a:hover {
-  color: #e7c035; /* Change color on hover */
-  text-decoration: none; /* Ensure no underline on hover */
+  color: #e7c035;
 }
 
+/* SOCIAL */
 .footer-social {
   display: flex;
   gap: 15px;
@@ -68,66 +63,90 @@
 
 .footer-social a {
   color: #fff;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease;
 }
 
 .footer-social a:hover {
-  color: #e7c035; /* Add hover effect */
+  color: #e7c035;
 }
 
+/* PAYMENT SECTION */
+.footer-payment {
+  text-align: center;
+  margin: 30px 0 40px;
+}
+
+.payment-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.mpesa-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(231, 192, 53, 0.6);
+  padding: 15px 25px;
+}
+
+.mpesa-box img {
+  width: 80px;
+}
+
+.mpesa-details {
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mpesa-details span {
+  display: block;
+  color: #bbb;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mpesa-details strong {
+  display: block;
+  font-size: 16px;
+  color: #e7c035;
+}
+
+/* LOGO */
 .logo-text {
   font-family: 'Protest Guerrilla', sans-serif;
   font-size: 60px;
   text-align: center;
-  animation: slideIn 1s ease-out;
+  margin-top: 20px;
 }
 
 .logo-text span {
   color: #e7c035;
 }
 
+/* BOTTOM */
 .footer-bottom {
-  text-align: center;
   margin-top: 20px;
   font-size: 12px;
+  color: #aaa;
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-/* Responsive Styling */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .footer-links {
     flex-direction: column;
     align-items: center;
   }
 
-  .footer-column {
-    margin-bottom: 30px;
+  .mpesa-box {
+    flex-direction: column;
+    text-align: center;
   }
 
   .logo-text {
     font-size: 40px;
-  }
-
-  .footer-social {
-    justify-content: center;
   }
 }

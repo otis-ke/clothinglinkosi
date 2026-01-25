@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/header/header'; 
-import Footer from './components/footer/footer'; 
+import Footer from './components/footer/footer';
+import ScrollToTop from './components/ScrollToTop'; 
 import Men from './pages/men'; 
 import Women from './pages/women'; 
 import Kids from './pages/kids'; 
@@ -41,6 +42,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

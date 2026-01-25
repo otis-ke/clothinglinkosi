@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { db } from '../../pages/womenfire'; // Ensure this is your Firestore setup file
+import { db } from '../../pages/womenfire';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import './shop.css'; // Import the custom CSS
+import './shop.css';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -12,12 +12,17 @@ const Shop = () => {
     const fetchProducts = async () => {
       try {
         const productCollectionRef = collection(db, 'store_section');
-        const productQuery = query(productCollectionRef, orderBy('publish_date', 'desc'));
+        const productQuery = query(
+          productCollectionRef,
+          orderBy('publish_date', 'desc')
+        );
         const productSnapshot = await getDocs(productQuery);
+
         const productsList = productSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+
         setProducts(productsList);
       } catch (error) {
         console.error('Error fetching products: ', error);
@@ -27,10 +32,11 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
-  // Intersection Observer for product reveal animations
+  // Intersection Observer for reveal animations
   useEffect(() => {
     const observedRefs = productElementRefs.current;
-    const observers = observedRefs.map((product, index) => {
+
+    const observers = observedRefs.map((product) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -41,6 +47,7 @@ const Shop = () => {
         },
         { threshold: 0.2 }
       );
+
       if (product) observer.observe(product);
       return observer;
     });
@@ -54,7 +61,11 @@ const Shop = () => {
 
   return (
     <section id="shop-section" className="new-shop-section">
-      <h1>Our Collection</h1>
+      <h1 className="shop-title">Our Collection</h1>
+      <h2 className="shop-subtitle">
+        CLASSY <span>·</span> ELEGANT <span>·</span> TRENDY
+      </h2>
+
       <div className="new-product-grid">
         {products.map((product, index) => (
           <div

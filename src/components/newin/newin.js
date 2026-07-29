@@ -3,6 +3,7 @@ import { db } from '../../pages/womenfire'; // Ensure this path points to your F
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './newin.css';
+import MediaAsset from '../MediaAsset';
 
 const NewInSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -76,9 +77,9 @@ const NewInSlider = () => {
   return (
     <section className="new-in-section bodoni-moda-sc-regular">
       <br />
-      <h2 class="explore-world-heading">
-  <span class="small-text">Explore The World Of</span>
-  <span class="large-text">LINKOSI CLOTHING</span>
+      <h2 className="explore-world-heading">
+  <span className="small-text">Explore The World Of</span>
+  <span className="large-text">LINKOSI CLOTHING</span>
  
 </h2>
 <p className="quicksand-regular">Explore Our Seasonal Clothing,</p>
@@ -89,7 +90,7 @@ const NewInSlider = () => {
       <div className="slider" ref={sliderRef}>
         {blogPosts.map((post, index) => (
           <div key={index} className="slider-item">
-            <img
+            <MediaAsset
               src={post.header_image}
               alt={`new in post ${post.name}`}
             />

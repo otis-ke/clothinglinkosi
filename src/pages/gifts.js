@@ -6,17 +6,20 @@ import { FaWhatsapp } from 'react-icons/fa';
 import './women.css'; // Assuming you're using a separate CSS for gifts or can share styles
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../components/firebase/firebase';
+import { isCustomerUser } from '../firebase/authActions';
 import { useNavigate, useLocation } from 'react-router-dom';
+import MediaAsset from '../components/MediaAsset';
+import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
 
 const Gifts = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  const { addToCart } = useCart();
+  const showToast = useToast();
   const [modalProduct, setModalProduct] = useState(null);
   const productElementRefs = useRef([]);
-  const [user] = useAuthState(auth);
+  const [authUser] = useAuthState(auth);
+  const user = isCustomerUser(authUser) ? authUser : null;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -56,23 +59,18 @@ const Gifts = () => {
   }, [location.search, handleUrlProduct]);
 
   const handleAddToCart = (product) => {
-    const updatedCart = [...cart, { ...product, quantity: 1 }];
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    alert(`${product.name} added to cart.`);
+    addToCart(product, 1);
+    showToast(`${product.name} added to cart.`, 'success');
   };
 
   const handleBuyNow = (product) => {
     if (!user) {
-      alert('Please sign in to proceed with the purchase.');
-      return navigate('/signin');
+      showToast('Please sign in to continue with your purchase.', 'info');
+      return navigate('/signin', { state: { from: `${location.pathname}${location.search}` } });
     }
 
-    const updatedCart = [...cart, { ...product, quantity: 1 }];
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-    navigate('/checkout', { state: { cart: updatedCart } });
+    addToCart(product, 1);
+    navigate('/checkout');
   };
 
   const handleWhatsApp = (product) => {
@@ -126,7 +124,7 @@ const Gifts = () => {
             ref={(el) => (productElementRefs.current[index] = el)}
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
-            <img
+            <MediaAsset
               src={product.header_image}
               alt={product.name}
               onClick={() => openProductPage(product)}
@@ -167,21 +165,23 @@ const Gifts = () => {
             <p>close</p>
             </span>
             <div className="full-page-header">
-              <img
+              <MediaAsset
                 src={modalProduct.header_image}
                 alt={modalProduct.name}
                 className="full-page-main-image"
+                videoControls
               />
               <h2 className="cormorant-garamond-semibold">{modalProduct.name}</h2>
               <p className="cormorant-garamond-regular">Ksh {modalProduct.price}</p>
             </div>
             <div className="full-page-gallery">
-              {modalProduct.product_images.map((image, i) => (
-                <img
+              {(modalProduct.product_images || []).map((image, i) => (
+                <MediaAsset
                   key={i}
                   src={image}
                   alt={`${modalProduct.name} view ${i}`}
                   className="full-page-gallery-image"
+                  videoControls
                 />
               ))}
             </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../../pages/womenfire'; // Ensure this is your Firestore setup file
+import MediaAsset from '../MediaAsset';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import './store.css'; // Updated the import to match the new component name
 
@@ -63,7 +64,7 @@ const Store = () => {
             ref={(el) => (storeProductRefs.current[index] = el)}
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
-            <img src={product.header_image} alt={product.name} />
+            <MediaAsset src={product.header_image} alt={product.name} />
             <h4>{product.name}</h4>
           </div>
         ))}

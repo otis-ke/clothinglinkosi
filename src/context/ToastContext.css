@@ -1,0 +1,55 @@
+.site-toasts {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 4000;
+  pointer-events: none;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.site-toast {
+  pointer-events: auto;
+  max-width: 420px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: "Gowun Batang", serif;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  animation: toast-in 0.2s ease;
+}
+
+.site-toast--error {
+  background: #c0392b;
+}
+
+.site-toast--success {
+  background: #1a1a1a;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-toast {
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+}

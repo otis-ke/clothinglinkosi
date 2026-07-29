@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Used when Cloudinary preset is not set (see src/services/mediaUpload.js)
+    match /admin_uploads/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

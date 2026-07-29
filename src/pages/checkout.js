@@ -1,54 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { MdDelete } from 'react-icons/md';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, isCustomerUser } from '../firebase/authActions';
+import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
 import './checkout.css';
+import MediaAsset from '../components/MediaAsset';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    // Calculate total price when cart changes
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    setTotalPrice(total);
-  }, [cart]);
-
-  const handleQuantityChange = (index, amount) => {
-    const updatedCart = [...cart];
-    updatedCart[index].quantity += amount;
-    
-    // Automatically remove item if quantity becomes 1 and user clicks minus
-    if (updatedCart[index].quantity <= 1 && amount === -1) {
-      handleRemoveItem(index);
-    } else {
-      if (updatedCart[index].quantity <= 0) updatedCart[index].quantity = 1;
-      setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Sync with localStorage
-    }
-  };
-
-  const handleRemoveItem = (index) => {
-    const updatedCart = cart.filter((_, i) => i !== index);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Sync with localStorage
-  };
+  const [authUser] = useAuthState(auth);
+  const user = isCustomerUser(authUser) ? authUser : null;
+  const { cart, updateQuantity, removeFromCart, clearCart, totalPrice } = useCart();
+  const showToast = useToast();
 
   const handleProceedToPayment = () => {
     if (cart.length === 0) {
-      alert("Your cart is empty!");
+      showToast('Your cart is empty!', 'error');
       return;
     }
-    navigate('/payment', { state: { cart, totalPrice } });
-  };
-
-  const handleClearCart = () => {
-    setCart([]);
-    localStorage.setItem('cart', JSON.stringify([])); // Clear cart in localStorage
+    if (!user) {
+      showToast('Please sign in to continue to payment.', 'info');
+      navigate('/signin', { state: { from: '/checkout' } });
+      return;
+    }
+    navigate('/payment');
   };
 
   return (
@@ -58,20 +36,20 @@ const Checkout = () => {
         <div className="cart-items">
           {cart.map((item, index) => (
             <div key={index} className="cart-item">
-              <img src={item.header_image} alt={item.name} className="cart-image" />
+              <MediaAsset src={item.header_image} alt={item.name} className="cart-image" />
               <div className="cart-details">
                 <h3>{item.name}</h3>
                 <p>Price: Ksh {item.price}</p>
                 <div className="quantity-control">
-                  <button onClick={() => handleQuantityChange(index, -1)} className="qty-btn">
+                  <button onClick={() => updateQuantity(index, -1)} className="qty-btn">
                     <FiMinus />
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => handleQuantityChange(index, 1)} className="qty-btn">
+                  <button onClick={() => updateQuantity(index, 1)} className="qty-btn">
                     <FiPlus />
                   </button>
                 </div>
-                <button onClick={() => handleRemoveItem(index)} className="remove-btn">
+                <button onClick={() => removeFromCart(index)} className="remove-btn">
                   <MdDelete /> Remove
                 </button>
               </div>
@@ -94,7 +72,7 @@ const Checkout = () => {
           <button onClick={handleProceedToPayment} className="proceed-btn">
             Proceed to Payment
           </button>
-          <button onClick={handleClearCart} className="clear-btn">
+          <button onClick={clearCart} className="clear-btn">
             Clear Cart
           </button>
         </div>

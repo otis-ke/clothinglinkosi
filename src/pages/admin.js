@@ -1,37 +1,53 @@
-import React, { useState, useRef } from 'react';
-import './AdminComponent.css';
+import React, { useState, useRef, useEffect } from "react";
+import { signInAnonymously } from "firebase/auth";
+import { auth } from "../firebase/client";
+import "./AdminComponent.css";
+import AdminCmsPanel from "../components/admin/AdminCmsPanel";
+import AdminPostUploader from "../components/admin/AdminPostUploader";
 
 const AdminComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const ordersRef = useRef(null);
-  const updatesRef = useRef(null);
+  const cmsRef = useRef(null);
+  const postDashRef = useRef(null);
 
-  const validUsername = 'admin';
-  const validPassword = 'LCmodeling12';
+  const validUsername = "admin";
+  const validPassword = "LCmodeling12";
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === validUsername && password === validPassword) {
       setIsLoggedIn(true);
     } else {
-      setError('Invalid username or password');
+      setError("Invalid username or password");
     }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUsername('');
-    setPassword('');
-    setError('');
+    setUsername("");
+    setPassword("");
+    setError("");
   };
 
   const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    if (auth.currentUser) return;
+    signInAnonymously(auth).catch((err) => {
+      console.warn(
+        "[Admin] Anonymous sign-in:",
+        err?.code || err?.message || err
+      );
+    });
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) {
     return (
@@ -55,7 +71,9 @@ const AdminComponent = () => {
             required
             className="admin-login-input"
           />
-          <button type="submit" className="admin-login-button">Login</button>
+          <button type="submit" className="admin-login-button">
+            Login
+          </button>
         </form>
       </div>
     );
@@ -66,31 +84,58 @@ const AdminComponent = () => {
       <aside className="admin-sidebar">
         <h2 className="bodoni-moda-admin">Admin Panel</h2>
         <nav>
-          <button className="admin-nav-button" onClick={() => scrollToSection(ordersRef)}>Orders</button>
-          <button className="admin-nav-button" onClick={() => scrollToSection(updatesRef)}>Updates</button>
+          <button
+            className="admin-nav-button"
+            onClick={() => scrollToSection(cmsRef)}
+          >
+            Content (Cloudinary + Firestore)
+          </button>
+          <button
+            className="admin-nav-button"
+            onClick={() => scrollToSection(postDashRef)}
+          >
+            Quick post (card uploader)
+          </button>
+          <button
+            className="admin-nav-button"
+            onClick={() => scrollToSection(ordersRef)}
+          >
+            Orders
+          </button>
         </nav>
-        <button className="admin-logout-button" onClick={handleLogout}>Logout</button>
+        <button className="admin-logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </aside>
 
       <div className="admin-content-wrapper">
-        <section ref={ordersRef} className="admin-section">
-          <h2 className="bodoni-moda-admin">Orders Section</h2>
-          <p>Manage and view orders here.</p>
+        <section ref={cmsRef} className="admin-section admin-section-cms">
+          <h2 className="bodoni-moda-admin">Storefront CMS</h2>
+          <p>
+            Upload images or videos to <strong>Cloudinary</strong>, then save{' '}
+            <code>secure_url</code> values into <strong>Firestore</strong> per
+            collection. Use <code>.env.local</code> for Firebase and Cloudinary
+            variables (see <code>.env.example</code>).
+          </p>
+          <AdminCmsPanel />
         </section>
 
-        <section ref={updatesRef} className="admin-section">
-          <h2 className="bodoni-moda-admin">Updates Section</h2>
-          <p><strong>Update Links:</strong></p>
-          <ul>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/intro_section">Home Intro Content</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/linkosiblog">Blog Content</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/women">Women's Products</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/men">Men's Products</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/kids_collections">Kids' Products</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/gifts">Gift Products</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/decor">Decor Products</a></li>
-            <li><a href="https://app.firecms.co/p/linkosiclothing-cf88d/c/store_section">Store Section Images</a></li>
-          </ul>
+        <section ref={postDashRef} className="admin-section">
+          <h2 className="bodoni-moda-admin">Quick post dashboard</h2>
+          <p className="admin-section-lead">
+            Card layout: media preview, caption, then one action to upload to Cloudinary and save the URL to the{" "}
+            <code>posts</code> collection with <code>serverTimestamp()</code>.
+          </p>
+          <AdminPostUploader />
+        </section>
+
+        <section ref={ordersRef} className="admin-section">
+          <h2 className="bodoni-moda-admin">Orders</h2>
+          <p>
+            Customer orders are pushed to Firebase <strong>Realtime Database</strong>{' '}
+            from the payment page. Inspect them in the Firebase console under your
+            RTDB project (<code>orders</code>).
+          </p>
         </section>
       </div>
     </div>

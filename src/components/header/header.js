@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, provider, signInWithPopup, signOut } from '../firebase/firebase';
+import { auth, signInWithGoogle, signOutUser, isCustomerUser } from '../../firebase/authActions';
+import { useCart } from '../../context/CartContext';
+import { useToast } from '../../context/ToastContext';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { IoBagOutline } from 'react-icons/io5';
 import { FiUser } from 'react-icons/fi';
@@ -10,27 +12,59 @@ import { MdScreenSearchDesktop } from 'react-icons/md';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user] = useAuthState(auth); // Firebase session persists
+  const [accountOpen, setAccountOpen] = useState(false);
+  const [signingIn, setSigningIn] = useState(false);
+  const [authUser] = useAuthState(auth); // Firebase session persists
+  const user = isCustomerUser(authUser) ? authUser : null; // ignore the admin panel's anonymous session
   const [scrolled, setScrolled] = useState(false);
+  const { itemCount } = useCart();
+  const showToast = useToast();
+  const accountRef = useRef(null);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  const handleSignIn = async () => {
+  const handleUserIconClick = async () => {
+    if (user) {
+      setAccountOpen((open) => !open);
+      return;
+    }
+    if (signingIn) return; // a popup is already in flight — ignore repeat clicks
+    setSigningIn(true);
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithGoogle();
     } catch (error) {
-      console.error('Error signing in:', error);
+      if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+        console.error('Error signing in:', error);
+        showToast('Could not sign in right now. Please try again.', 'error');
+      }
+    } finally {
+      setSigningIn(false);
     }
   };
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOutUser();
+      setAccountOpen(false);
+      closeMenu();
     } catch (error) {
       console.error('Error signing out:', error);
+      showToast('Could not sign out right now.', 'error');
     }
   };
+
+  // Close the account dropdown when clicking outside it.
+  useEffect(() => {
+    if (!accountOpen) return undefined;
+    const onClickOutside = (e) => {
+      if (accountRef.current && !accountRef.current.contains(e.target)) {
+        setAccountOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onClickOutside);
+    return () => document.removeEventListener('mousedown', onClickOutside);
+  }, [accountOpen]);
 
   // Detect scroll to change header background
   useEffect(() => {
@@ -51,18 +85,41 @@ const Header = () => {
         <h2 className="logo">LINKOSI</h2>
 
         <div className="icon-container">
-          <Link to="/checkout" className="icon">
+          <Link to="/checkout" className="icon cart-icon-wrap">
             <IoBagOutline />
+            {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
           </Link>
           <Link to="/company" className="icon">
             <MdScreenSearchDesktop />
           </Link>
 
-          {user ? (
-            <FiUser className="icon user-icon" onClick={handleSignOut} />
-          ) : (
-            <FiUser className="icon user-icon" onClick={handleSignIn} />
-          )}
+          <div className="account-menu" ref={accountRef}>
+            {user && user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt={user.displayName || 'Account'}
+                className="user-avatar"
+                onClick={handleUserIconClick}
+              />
+            ) : (
+              <FiUser
+                className={`icon user-icon ${user ? 'green' : ''} ${signingIn ? 'is-busy' : ''}`}
+                onClick={handleUserIconClick}
+              />
+            )}
+
+            {accountOpen && user && (
+              <div className="account-dropdown">
+                <p className="account-dropdown-name">{user.displayName || user.email}</p>
+                <Link to="/orders" className="account-dropdown-link" onClick={() => setAccountOpen(false)}>
+                  My Orders
+                </Link>
+                <button className="account-dropdown-signout" onClick={handleSignOut}>
+                  Sign out
+                </button>
+              </div>
+            )}
+          </div>
 
           <HiMenuAlt4
             className="icon hamburger-container"
@@ -81,14 +138,13 @@ const Header = () => {
           <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
 
           {user && (
-            <>
-              <div className="account-info">
-                <p>Welcome, {user.displayName || user.email}</p>
-                <button className="logout-button" onClick={handleSignOut}>
-                  Logout
-                </button>
-              </div>
-            </>
+            <div className="account-info">
+              <p>Welcome, {user.displayName || user.email}</p>
+              <Link to="/orders" className="nav-link" onClick={closeMenu}>My Orders</Link>
+              <button className="logout-button" onClick={handleSignOut}>
+                Logout
+              </button>
+            </div>
           )}
         </nav>
       </div>

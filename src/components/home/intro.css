@@ -21,6 +21,14 @@
   z-index: 1; /* Place the image below the text */
 }
 
+.background-image:is(video) {
+  object-fit: cover;
+}
+
+.intro-section-fallback {
+  background: linear-gradient(135deg, #2c2c2c, #5a4a4a);
+}
+
 /* Content Styling */
 .intro-section .content {
   position: relative;

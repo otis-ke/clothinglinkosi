@@ -3,6 +3,7 @@ import { db } from '../../pages/womenfire'; // Ensure this path points to your F
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './newInUnique.css'; // Import unique CSS
+import MediaAsset from '../MediaAsset';
 
 const NewInSliderUnique = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,7 +45,7 @@ const NewInSliderUnique = () => {
         });
 
         const fetchedData = await Promise.all(fetchPromises);
-        setCollectionsData(fetchedData);
+        setCollectionsData(fetchedData.filter(Boolean));
       } catch (error) {
         console.error('Error fetching data from collections:', error);
       }
@@ -113,7 +114,7 @@ const NewInSliderUnique = () => {
       <div className="slider-unique" ref={sliderRef}>
         {collectionsData.map((post, index) => (
           <div key={index} className="slider-item-unique">
-            <img
+            <MediaAsset
               src={post.header_image}
               alt={`new-in-post-${post.collectionName}`}
             />

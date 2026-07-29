@@ -15,7 +15,8 @@
 }
 
 /* Headings */
-h2, h3 {
+.payment-container h2,
+.payment-container h3 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
@@ -126,7 +127,7 @@ textarea {
 }
 
 /* Button Styles - Elegant Black/White/Pink Theme */
-button, .pay-btn {
+.payment-container button, .pay-btn {
   width: 100%;
   padding: 16px 24px;
   font-size: 1.1rem;
@@ -142,7 +143,7 @@ button, .pay-btn {
   font-family: 'Gowun Batang', serif;
 }
 
-button:hover, .pay-btn:hover {
+.payment-container button:hover, .pay-btn:hover {
   background-color: transparent;
   color: #000;
   border-color: #000;
@@ -150,7 +151,7 @@ button:hover, .pay-btn:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:active, .pay-btn:active {
+.payment-container button:active, .pay-btn:active {
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

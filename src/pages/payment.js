@@ -1,13 +1,34 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaCreditCard, FaMobileAlt } from 'react-icons/fa';
-import { getDatabase, ref, push } from "firebase/database";
+import { ref, push, serverTimestamp } from "firebase/database";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { rtdb } from "../firebase/client";
+import { auth, isCustomerUser } from '../firebase/authActions';
+import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
+import MediaAsset from '../components/MediaAsset';
 import './payment.css';
 
 const Payment = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const cart = location.state?.cart || JSON.parse(localStorage.getItem('cart'));
+  const [authUser, loadingAuth] = useAuthState(auth);
+  const user = isCustomerUser(authUser) ? authUser : null;
+  const { cart, totalPrice, clearCart } = useCart();
+  const showToast = useToast();
+  const orderPlacedRef = useRef(false);
+
+  // Guard direct navigation to /payment without an eligible cart/session.
+  useEffect(() => {
+    if (loadingAuth) return;
+    if (!user) {
+      navigate('/signin', { state: { from: '/checkout' } });
+      return;
+    }
+    if (cart.length === 0 && !orderPlacedRef.current) {
+      navigate('/checkout');
+    }
+  }, [loadingAuth, user, cart, navigate]);
 
   const [paymentMethod, setPaymentMethod] = useState('');
   const [formData, setFormData] = useState({
@@ -28,32 +49,40 @@ const Payment = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const calculateTotal = useCallback(() => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  }, [cart]);
+  const calculateTotal = useCallback(() => totalPrice, [totalPrice]);
 
   const saveOrderToDatabase = useCallback(async (orderDetails) => {
-    const db = getDatabase();
+    if (!rtdb) {
+      showToast('Orders database is not configured. Set REACT_APP_FIREBASE_DATABASE_URL in .env.local.', 'error');
+      return;
+    }
+    const fullOrder = {
+      ...orderDetails,
+      uid: user?.uid || null,
+      userEmail: user?.email || null,
+      userDisplayName: user?.displayName || null,
+      createdAt: serverTimestamp(),
+    };
     try {
-      await push(ref(db, 'orders'), orderDetails);
-      alert('Order submitted successfully!');
-      localStorage.setItem('order', JSON.stringify(orderDetails));
-      localStorage.removeItem('cart');
-      navigate('/orders');
+      await push(ref(rtdb, 'orders'), fullOrder);
+      showToast('Order submitted successfully!', 'success');
+      orderPlacedRef.current = true;
+      clearCart();
+      navigate('/orders', { state: { justPlaced: fullOrder } });
     } catch (error) {
       console.error("Error saving order to database: ", error);
-      alert('An error occurred while submitting your order. Please try again.');
+      showToast('An error occurred while submitting your order. Please try again.', 'error');
     }
-  }, [navigate]);
+  }, [navigate, user, clearCart, showToast]);
 
   const handlePayment = () => {
     if (!formData.name || !formData.address || !formData.county || !formData.country || !formData.phone) {
-      alert('Please fill in all the required fields.');
+      showToast('Please fill in all the required fields.', 'error');
       return;
     }
 
     if (paymentMethod === 'Mpesa' && !formData.mpesaPhone) {
-      alert('Please enter your phone number for Mpesa.');
+      showToast('Please enter your phone number for Mpesa.', 'error');
       return;
     }
 
@@ -72,7 +101,7 @@ const Payment = () => {
 
   const handleMpesaSubmit = () => {
     if (!formData.mpesaTransactionCode || !formData.mpesaTransactionAmount) {
-      alert('Please enter the transaction code and amount.');
+      showToast('Please enter the transaction code and amount.', 'error');
       return;
     }
     const orderDetails = {
@@ -139,7 +168,7 @@ const Payment = () => {
         <h3>Your Cart</h3>
         {cart.map((item, index) => (
           <div key={index} className="payment-item">
-            <img src={item.header_image} alt={item.name} />
+            <MediaAsset src={item.header_image} alt={item.name} />
             <h4>{item.name} x {item.quantity}</h4>
             <p>Ksh {item.price * item.quantity}</p>
           </div>

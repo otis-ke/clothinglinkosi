@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../../pages/womenfire';
+import MediaAsset from '../MediaAsset';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import './shop.css';
 
@@ -74,7 +75,7 @@ const Shop = () => {
             ref={(el) => (productElementRefs.current[index] = el)}
             data-direction={index % 2 === 0 ? 'left' : 'right'}
           >
-            <img src={product.header_image} alt={product.name} />
+            <MediaAsset src={product.header_image} alt={product.name} />
             <div className="product-name-button">
               <span>{product.name}</span>
             </div>

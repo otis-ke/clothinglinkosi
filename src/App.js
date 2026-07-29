@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Header from './components/header/header'; 
+import { CartProvider } from './context/CartContext';
+import { ToastProvider } from './context/ToastContext';
+import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import ScrollToTop from './components/ScrollToTop'; 
 import Men from './pages/men'; 
@@ -41,36 +43,40 @@ function App() {
   }
 
   return (
-    <Router>
-      <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<PostDetail />} />
-        <Route path="/postDetail/:id" element={<PostDetail />} />
-        <Route path="/men" element={<Men />} />
-        <Route path="/women" element={<Women />} />
-        <Route path="/kids" element={<Kids />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/gifts" element={<Gifts />} />
-        <Route path="/decor" element={<Decor />} />
-        <Route path="/company" element={<LinkosiProfile />} />
-        <Route path="/getintouch" element={<GetInTouch />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/faqs" element={<FAQs />} />
-        <Route path="/returns" element={<Returns />} />
-        <Route path="/sitemap" element={<Sitemap />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/cookies" element={<Cookies />} />
-        <Route path="/admin" element={<AdminComponent />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <ToastProvider>
+      <CartProvider>
+        <Router>
+          <ScrollToTop />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<PostDetail />} />
+            <Route path="/postDetail/:id" element={<PostDetail />} />
+            <Route path="/men" element={<Men />} />
+            <Route path="/women" element={<Women />} />
+            <Route path="/kids" element={<Kids />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/gifts" element={<Gifts />} />
+            <Route path="/decor" element={<Decor />} />
+            <Route path="/company" element={<LinkosiProfile />} />
+            <Route path="/getintouch" element={<GetInTouch />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/faqs" element={<FAQs />} />
+            <Route path="/returns" element={<Returns />} />
+            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/admin" element={<AdminComponent />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </CartProvider>
+    </ToastProvider>
   );
 }
 

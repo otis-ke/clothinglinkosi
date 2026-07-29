@@ -36,6 +36,15 @@ const Footer = () => {
             </ul>
           </div>
 
+          <div className="footer-column">
+            <h3>My Account</h3>
+            <ul>
+              <li><Link to="/signup">Sign Up</Link></li>
+              <li><Link to="/signin">Log In</Link></li>
+              <li><Link to="/orders">My Orders</Link></li>
+            </ul>
+          </div>
+
           {/* Social media */}
           <div className="footer-social">
             <a href="https://www.facebook.com/LINKOSICLOTHING?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">

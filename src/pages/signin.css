@@ -60,3 +60,15 @@
   opacity: 0.65;
   cursor: not-allowed;
 }
+
+.signin-switch {
+  margin: 20px 0 0;
+  font-size: 0.88rem;
+  color: #777;
+}
+
+.signin-switch a {
+  color: #111;
+  font-weight: 600;
+  text-decoration: underline;
+}

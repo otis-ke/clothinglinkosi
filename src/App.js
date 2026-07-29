@@ -8,7 +8,8 @@ import ScrollToTop from './components/ScrollToTop';
 import Men from './pages/men'; 
 import Women from './pages/women'; 
 import Kids from './pages/kids'; 
-import SignIn from './pages/signin'; 
+import SignIn from './pages/signin';
+import SignUp from './pages/signup';
 import Home from './pages/home'; 
 import Checkout from './pages/checkout';
 import Payment from './pages/payment';
@@ -56,6 +57,7 @@ function App() {
             <Route path="/women" element={<Women />} />
             <Route path="/kids" element={<Kids />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/orders" element={<Orders />} />

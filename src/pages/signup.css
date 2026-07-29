@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 40px;
+  background-color: #f7f7f7;
+  font-family: 'Gowun Batang', serif;
+}
+
+.signup-panel {
+  width: 100%;
+  max-width: 780px;
+  display: flex;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.signup-brand {
+  flex: 1;
+  background-color: #111;
+  color: #fff;
+  padding: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-logo {
+  font-family: 'Protest Guerrilla', sans-serif;
+  font-size: 2.2rem;
+  color: #e7c035;
+  margin: 0 0 14px;
+}
+
+.signup-tagline {
+  font-size: 1rem;
+  color: #ddd;
+  margin: 0 0 26px;
+  line-height: 1.5;
+}
+
+.signup-benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.signup-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: #fff;
+}
+
+.signup-benefits svg {
+  color: #e7c035;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.signup-card {
+  flex: 1;
+  background: #fff;
+  padding: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.signup-card h3 {
+  font-size: 1.35rem;
+  margin: 0 0 10px;
+  color: #111;
+}
+
+.signup-card > p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 26px;
+  line-height: 1.5;
+}
+
+.google-signin-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.google-signin-btn:hover:not(:disabled) {
+  border-color: #bbb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.google-signin-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.signup-switch {
+  margin: 20px 0 0;
+  font-size: 0.88rem;
+  color: #777;
+}
+
+.signup-switch a {
+  color: #111;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
+  .signup-panel {
+    flex-direction: column;
+  }
+
+  .signup-brand,
+  .signup-card {
+    padding: 34px 28px;
+  }
+}

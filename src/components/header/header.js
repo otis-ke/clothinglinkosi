@@ -122,13 +122,18 @@ const Header = () => {
           <Link to="/decor" className="nav-link" onClick={closeMenu}>Decor</Link>
           <Link to="/getintouch" className="nav-link" onClick={closeMenu}>Contact Us</Link>
 
-          {user && (
+          {user ? (
             <div className="account-info">
               <p>Welcome, {user.displayName || user.email}</p>
               <Link to="/orders" className="nav-link" onClick={closeMenu}>My Orders</Link>
               <button className="logout-button" onClick={handleSignOut}>
                 Logout
               </button>
+            </div>
+          ) : (
+            <div className="account-info">
+              <Link to="/signin" className="nav-link" onClick={closeMenu}>Log In</Link>
+              <Link to="/signup" className="nav-link" onClick={closeMenu}>Sign Up</Link>
             </div>
           )}
         </nav>

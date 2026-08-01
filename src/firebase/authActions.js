@@ -1,4 +1,13 @@
-import { auth, provider, signInWithPopup, signOut } from "../components/firebase/firebase";
+import {
+  auth,
+  provider,
+  signInWithPopup,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  updateProfile,
+} from "../components/firebase/firebase";
 import { upsertUserProfile } from "./userProfile";
 
 // Firebase's popup-auth flow keeps a single internal promise per app instance;
@@ -29,6 +38,35 @@ export async function signInWithGoogle() {
   }
 }
 
+/** Email/password account creation; sets displayName and upserts users/{uid}. */
+export async function registerWithEmail({ name, email, password }) {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  if (name?.trim()) {
+    await updateProfile(result.user, { displayName: name.trim() });
+  }
+  try {
+    await upsertUserProfile(result.user);
+  } catch (err) {
+    console.warn("[auth] Could not save user profile to Firestore:", err.message || err);
+  }
+  return result.user;
+}
+
+/** Email/password login; refreshes the users/{uid} lastLoginAt on success. */
+export async function loginWithEmail({ email, password }) {
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  try {
+    await upsertUserProfile(result.user);
+  } catch (err) {
+    console.warn("[auth] Could not save user profile to Firestore:", err.message || err);
+  }
+  return result.user;
+}
+
+export async function resetPassword(email) {
+  await sendPasswordResetEmail(auth, email);
+}
+
 export async function signOutUser() {
   await signOut(auth);
 }
@@ -41,6 +79,35 @@ export async function signOutUser() {
  */
 export function isCustomerUser(user) {
   return Boolean(user) && !user.isAnonymous;
+}
+
+/** Maps Firebase Auth error codes to copy a customer can actually act on. */
+export function friendlyAuthError(error) {
+  switch (error?.code) {
+    case "auth/unauthorized-domain":
+      return "Sign-in isn't configured for this domain yet. Please try again shortly.";
+    case "auth/operation-not-allowed":
+      return "This sign-in method isn't enabled yet. Please try Google sign-in instead.";
+    case "auth/email-already-in-use":
+      return "An account already exists for that email. Try logging in instead.";
+    case "auth/weak-password":
+      return "Please choose a password with at least 6 characters.";
+    case "auth/invalid-email":
+      return "Please enter a valid email address.";
+    case "auth/user-not-found":
+    case "auth/invalid-credential":
+      return "No account matches that email and password.";
+    case "auth/wrong-password":
+      return "Incorrect password. Please try again.";
+    case "auth/too-many-requests":
+      return "Too many attempts. Please wait a moment and try again.";
+    case "auth/popup-blocked":
+      return "Your browser blocked the sign-in popup. Please allow popups and try again.";
+    case "auth/popup-closed-by-user":
+      return "Sign-in was cancelled.";
+    default:
+      return "Something went wrong. Please try again.";
+  }
 }
 
 export { auth };

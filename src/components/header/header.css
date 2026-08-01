@@ -54,11 +54,6 @@ h2.logo {
   color: green;
 }
 
-.user-icon.is-busy {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 /* Cart badge */
 .cart-icon-wrap {
   position: relative;

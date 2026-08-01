@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, signInWithGoogle, signOutUser, isCustomerUser } from '../../firebase/authActions';
+import { auth, signOutUser, isCustomerUser } from '../../firebase/authActions';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { HiMenuAlt4 } from 'react-icons/hi';
@@ -13,7 +13,6 @@ import { MdScreenSearchDesktop } from 'react-icons/md';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
-  const [signingIn, setSigningIn] = useState(false);
   const [authUser] = useAuthState(auth); // Firebase session persists
   const user = isCustomerUser(authUser) ? authUser : null; // ignore the admin panel's anonymous session
   const [scrolled, setScrolled] = useState(false);
@@ -24,23 +23,8 @@ const Header = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  const handleUserIconClick = async () => {
-    if (user) {
-      setAccountOpen((open) => !open);
-      return;
-    }
-    if (signingIn) return; // a popup is already in flight — ignore repeat clicks
-    setSigningIn(true);
-    try {
-      await signInWithGoogle();
-    } catch (error) {
-      if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
-        console.error('Error signing in:', error);
-        showToast('Could not sign in right now. Please try again.', 'error');
-      }
-    } finally {
-      setSigningIn(false);
-    }
+  const handleUserIconClick = () => {
+    setAccountOpen((open) => !open);
   };
 
   const handleSignOut = async () => {
@@ -94,7 +78,11 @@ const Header = () => {
           </Link>
 
           <div className="account-menu" ref={accountRef}>
-            {user && user.photoURL ? (
+            {!user ? (
+              <Link to="/signin" className="icon user-icon" aria-label="Sign in">
+                <FiUser />
+              </Link>
+            ) : user.photoURL ? (
               <img
                 src={user.photoURL}
                 alt={user.displayName || 'Account'}
@@ -102,10 +90,7 @@ const Header = () => {
                 onClick={handleUserIconClick}
               />
             ) : (
-              <FiUser
-                className={`icon user-icon ${user ? 'green' : ''} ${signingIn ? 'is-busy' : ''}`}
-                onClick={handleUserIconClick}
-              />
+              <FiUser className="icon user-icon green" onClick={handleUserIconClick} />
             )}
 
             {accountOpen && user && (

@@ -33,6 +33,92 @@
   line-height: 1.5;
 }
 
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.signin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.signin-form input {
+  padding: 11px 13px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+}
+
+.signin-form input:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.signin-forgot {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.82rem;
+  font-family: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: -6px 0 4px;
+}
+
+.signup-primary-btn {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: #fff;
+  background: #000;
+  border: 2px solid #000;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.signup-primary-btn:hover:not(:disabled) {
+  background: transparent;
+  color: #000;
+}
+
+.signup-primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signup-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 20px;
+  color: #999;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signup-divider::before,
+.signup-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e5e5;
+}
+
 .google-signin-btn {
   width: 100%;
   display: flex;
